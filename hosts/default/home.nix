@@ -36,8 +36,6 @@
     # '')
     pkgs.firefox
     pkgs.zoxide
-    pkgs.rustc
-    pkgs.cargo
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
