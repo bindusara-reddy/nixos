@@ -12,6 +12,7 @@
       ../../modules/nixosModules/users.nix
       ../../modules/nixosModules/utils.nix
       ../../modules/nixosModules/docker.nix
+      ../../modules/nixosModules/steam.nix
 
       # Include the results of the hardware scan.
       ./hardware-configuration.nix

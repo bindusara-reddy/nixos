@@ -46,6 +46,8 @@ in {
 
   programs.nano.enable = false;
 
+  services.printing.enable = true;
+
   environment.systemPackages = with pkgs; [
     neovim
     gcc
