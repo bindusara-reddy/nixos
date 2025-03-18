@@ -13,6 +13,7 @@ in {
         wayland = true;
       };
       desktopManager.gnome.enable = true;
+      excludePackages = [ pkgs.xterm ];
     };
 
     console.keyMap = keyboardLayout;
@@ -33,15 +34,13 @@ in {
       gnome-maps
       gnome-music
       gnome-photos
-      gnome-shell-extensions
       gnome-tour
-      gnome-terminal
+      gnome-console
       gnome-user-docs
       gnome-text-editor
       orca
       simple-scan
       totem # video player
-      xterm
       yelp # help viewer
       seahorse # password manager
     ];
