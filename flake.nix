@@ -16,7 +16,7 @@
 
   };
 
-  outputs = { self, nixpkgs, ... }@inputs: {
+  outputs = { self, nixpkgs, rust-overlay, ... }@inputs: {
     nixosConfigurations = {
       default = 
         nixpkgs.lib.nixosSystem {
