@@ -5,7 +5,6 @@
     [ # Mostly system related configuration
       ../../modules/nixosModules/nvidia.nix # CHANGEME: Remove this line if you don't have an Nvidia GPU
       ../../modules/nixosModules/audio.nix
-      ../../modules/nixosModules/git.nix
       ../../modules/nixosModules/gnome.nix
       ../../modules/nixosModules/home-manager.nix
       ../../modules/nixosModules/nix.nix
