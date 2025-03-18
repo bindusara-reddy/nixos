@@ -3,16 +3,16 @@
 {
   imports =
     [ # Mostly system related configuration
-      ../../nixos/nvidia.nix # CHANGEME: Remove this line if you don't have an Nvidia GPU
-      ../../nixos/audio.nix
-      ../../nixos/git.nix
-      ../../nixos/gnome.nix
-      ../../nixos/home-manager.nix
-      ../../nixos/nix.nix
-      ../../nixos/systemd-boot.nix
-      ../../nixos/users.nix
-      ../../nixos/utils.nix
-      ../../nixos/docker.nix
+      ../../modules/nixosModules/nvidia.nix # CHANGEME: Remove this line if you don't have an Nvidia GPU
+      ../../modules/nixosModules/audio.nix
+      ../../modules/nixosModules/git.nix
+      ../../modules/nixosModules/gnome.nix
+      ../../modules/nixosModules/home-manager.nix
+      ../../modules/nixosModules/nix.nix
+      ../../modules/nixosModules/systemd-boot.nix
+      ../../modules/nixosModules/users.nix
+      ../../modules/nixosModules/utils.nix
+      ../../modules/nixosModules/docker.nix
 
       # Include the results of the hardware scan.
       ./hardware-configuration.nix
