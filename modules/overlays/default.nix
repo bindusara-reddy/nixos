@@ -2,7 +2,7 @@
 
   imports = [
     
-    ./rust-overlay.nix
+    ./rust.nix
 
   ];
 
