@@ -16,9 +16,7 @@
       # Apps
       vlc # Video player     
       # Dev
-      python313
-      rustc
-      cargo 
+      python313 
     ];
     
     file = {};
