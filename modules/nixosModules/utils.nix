@@ -10,14 +10,6 @@ in {
   networking.networkmanager.enable = true;
   systemd.services.NetworkManager-wait-online.enable = false;
 
-  system.autoUpgrade = {
-    enable = config.var.autoUpgrade;
-    dates = "04:00";
-    flake = "${configDir}";
-    flags = [ "--update-input" "nixpkgs" "--commit-lock-file" ];
-    allowReboot = false;
-  };
-
   time = {
     timeZone = config.var.timeZone;
     hardwareClockInLocalTime = true;

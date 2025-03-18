@@ -15,7 +15,7 @@ in {
       desktopManager.gnome.enable = true;
     };
 
-    console.keymap = keyboardLayout;
+    console.keyMap = keyboardLayout;
   
     environment.gnome.excludePackages = with pkgs; [
       baobab # disk 
