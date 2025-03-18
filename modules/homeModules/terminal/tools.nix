@@ -9,7 +9,7 @@
     enable = true;
     autosuggestion = {
       enable = true;
-      strategy = [ "completion" "match_prev_cmd" "history" ];
+      strategy = [ "match_prev_cmd" "completion" "history" ];
     };
 
     shellAliases = {
