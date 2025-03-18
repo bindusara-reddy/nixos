@@ -10,8 +10,8 @@
 
     location = "Bengaluru";
     timeZone = "Asia/Calcutta";
-    defaultLocale = "en_IN.UTF-8";
-    extraLocale = "en_IN.UTF-8";
+    defaultLocale = "en_IN";
+    extraLocale = "en_IN";
 
     autoGarbageCollector = true;
   };
