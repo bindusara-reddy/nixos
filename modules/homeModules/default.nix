@@ -2,7 +2,7 @@
    
   imports = [
     ./gui/firefox.nix
-    ./gui/zed.nix
+    ./gui/vscode.nix
     ./terminal/tools.nix
   ];
 }
