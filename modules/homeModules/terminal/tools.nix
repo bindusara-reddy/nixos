@@ -10,12 +10,16 @@
     autosuggestion = {
       enable = true;
       strategy = [ "completion" "match_prev_cmd" "history" ];
-    }
+    };
+
+    shellAliases = {
+      ls = "eza";
+    };
  
     syntaxHighlighting = {
       enable = true;
       highlighters = [ "main" "brackets" "cursor" "root" ];
-    }
+    };
   };
 
   programs.oh-my-posh = {
