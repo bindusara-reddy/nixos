@@ -40,8 +40,7 @@ in {
       gnome-text-editor
       orca
       simple-scan
-      totem # video player
-      xterm
+      totem # video player  
       yelp # help viewer
       seahorse # password manager
     ];
