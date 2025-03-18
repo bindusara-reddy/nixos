@@ -13,12 +13,6 @@
     defaultLocale = "en_IN.UTF-8";
     extraLocale = "en_IN.UTF-8";
 
-    git = {
-      username = "bindusara-reddy";
-      email = "bindusara1252001@gmail.com";
-    };
-
-    autoUpgrade = false;
     autoGarbageCollector = true;
   };
 
