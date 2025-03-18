@@ -34,13 +34,14 @@ in {
       gnome-music
       gnome-photos
       gnome-shell-extensions
-      gnome-terminal
       gnome-tour
+      gnome-terminal
       gnome-user-docs
       gnome-text-editor
       orca
       simple-scan
-      totem # video player  
+      totem # video player
+      xterm
       yelp # help viewer
       seahorse # password manager
     ];
