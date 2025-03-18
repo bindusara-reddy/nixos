@@ -163,10 +163,11 @@
   # List packages installed in system profile. To search, run:
   # $ nix search nixpkgs wget
   environment.systemPackages = with pkgs; [
-     pkgs.curl
-     pkgs.neovim
-     pkgs.git
-     pkgs.docker
+     curl
+     neovim
+     git
+     docker
+     wl-clipboard
      # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
   ];
 
