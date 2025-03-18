@@ -1,15 +1,11 @@
 {
   programs.git.enable = true;
-  programs.kitty.enable = true;
   programs.zoxide.enable = true;
   programs.eza.enable = true;
-  programs.zsh = {
+  programs.kitty.enable = true; 
+  programs.oh-my-posh = {
     enable = true;
-    enableCompletion = true;
-    autosuggestion.enable = true;
-    syntaxHighlighting.enable = true;
-    history.size = 10000;
+    useTheme = "atomic";
   };
-  programs.oh-my-posh.enable = true;
-  programs.oh-my-posh.useTheme = "atomic";
+  programs.neovim.defaultEditor = true;
 }

@@ -6,7 +6,7 @@ in {
     # defaultUserShell = pkgs.zsh; # default shell for this user
     users.${username} = {
       isNormalUser = true;
-      description = "${username} account";
+      description = "${username}";
       extraGroups = [ "networkmanager" "wheel" ];
     };
   };

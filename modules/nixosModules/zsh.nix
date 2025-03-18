@@ -1,7 +1,12 @@
-{pkgs, ... }:{
+{pkgs, ... }: {
 
-  environment.pathsToLink = [ "/share/zsh" ];
-  programs.zsh.enable = true;
-  users.defaultUserShell = pkgs.zsh;
 
+  users.defaultUserShell = with pkgs; [ zsh ];
+  programs.zsh = {
+    enable = true;
+    enableCompletion = true;
+    autosuggestions.enable = true;
+    syntaxHighlighting.enable = true;
+    histSize = 10000;
+  };
 }
