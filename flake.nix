@@ -25,7 +25,7 @@
           modules = [
             ./hosts/laptop/configuration.nix
             inputs.home-manager.nixosModules.default
-	    ./modules/overlays/
+	    ./modules/overlays
          ];
         };
     };
