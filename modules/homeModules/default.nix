@@ -1,8 +1,9 @@
 {pkgs, lib, ...}: {
    
   imports = [
-    ./gui
-    ./terminal
+    ./gui/firefox.nix
+    ./gui/zed.nix
+    ./terminal/tools.nix
   ];
 }
 
