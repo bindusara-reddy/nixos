@@ -1,7 +1,5 @@
 {pkgs, ... }: {
 
-
-  users.defaultUserShell = with pkgs; [ zsh ];
   programs.zsh = {
     enable = true;
     enableCompletion = true;
@@ -9,4 +7,6 @@
     syntaxHighlighting.enable = true;
     histSize = 10000;
   };
+
+  users.defaultUserShell =  [ pkgs.zsh ];
 }
