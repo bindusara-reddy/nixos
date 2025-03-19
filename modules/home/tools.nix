@@ -14,7 +14,7 @@
       font_size = 14.0;
       window_margin_width = 10;
       background_image = "/home/${username}/Pictures/desert.png";
-      background_image_layout = "scale";
+      background_image_layout = "scaled";
       background_tint = 0.9;
       background_tint_gaps = -10.0;
       window_border_width = "1pt";
@@ -48,7 +48,7 @@
   programs.oh-my-posh = {
 
     enable = true;
-    useTheme = "M365Princess";
+    useTheme = "atomic";
 
   };
 
