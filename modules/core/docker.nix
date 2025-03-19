@@ -1,6 +1,6 @@
 { host, ... }: 
 let 
-  inherit (import ../../hosts/${host}/variables.nix} username;
+  inherit (import ../../hosts/${host}/variables.nix) username;
 in {
 
   virtualisation.docker.enable = true;

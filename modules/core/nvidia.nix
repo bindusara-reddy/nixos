@@ -1,4 +1,4 @@
-{ host, ... }:
+{ host,config, ... }:
 let
   inherit (import ../../hosts/${host}/variables.nix) intelID nvidiaID;
   nvidiaDriverChannel = config.boot.kernelPackages.nvidiaPackages.beta; # stable, latest, beta, etc.
