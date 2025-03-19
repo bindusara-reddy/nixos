@@ -23,6 +23,7 @@
       enabled_layouts = "Tall, *";
       tab_bar_style = "powerline";
       tab_powerline_style = "slanted";
+      wayland_titlebar_color = "#FFA500";
     };
 
   };
