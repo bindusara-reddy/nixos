@@ -22,6 +22,7 @@
   let
     system = "x86_64-linux";
     host = "default";
+    username = "bindu";
 
   in {
 
@@ -35,6 +36,7 @@
 	    inherit system;
 	    inherit inputs;
 	    inherit host;
+	    inherit username;
 	  };
 
           modules = [ ./hosts/${host}/configuration.nix ];
