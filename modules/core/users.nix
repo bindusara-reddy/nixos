@@ -27,6 +27,5 @@ in {
       extraGroups = [ "networkmanager" "wheel" ];
       shell = pkgs.zsh;
       ignoreShellProgramCheck = true;
-    };
   };
 }
