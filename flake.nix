@@ -16,22 +16,22 @@
 
   };
 
-  outputs = { self, nixpkgs, ... }@inputs: {
+  outputs = { self, nixpkgs, ... }@inputs: 
+  let
+    system = "x86_64-linux";
+  in {
     nixosConfigurations = {
       default = 
         nixpkgs.lib.nixosSystem {
 
-	  system = "x86_64-linux";
-	  host = "laptop";
+	  inherit system;
 
           specialArgs = {
 	    inherit inputs;
-	    inherit host;
+	    host = "laptop";
 	  };
 
-          modules = [
-            ./hosts/laptop/configuration.nix
-          ];
+          modules = [ ./hosts/laptop/configuration.nix ];
         };
     };
   };
