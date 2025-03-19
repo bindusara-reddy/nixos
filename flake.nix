@@ -2,6 +2,7 @@
   description = "Nixos";
 
   inputs = {
+
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
 
     home-manager = {
@@ -17,21 +18,27 @@
   };
 
   outputs = { self, nixpkgs, ... }@inputs: 
+
   let
     system = "x86_64-linux";
-  in {
-    nixosConfigurations = {
-      default = 
-        nixpkgs.lib.nixosSystem {
+    host = "laptop";
 
-	  inherit system;
+  in {
+
+    nixosConfigurations = {
+
+      "${host}" = 
+
+        nixpkgs.lib.nixosSystem rec {
 
           specialArgs = {
+	    inherit system;
 	    inherit inputs;
-	    host = "laptop";
+	    inherit host;
 	  };
 
-          modules = [ ./hosts/laptop/configuration.nix ];
+          modules = [ ./hosts/${host}/configuration.nix ];
+
         };
     };
   };
