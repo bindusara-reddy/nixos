@@ -1,7 +1,5 @@
-{ pkgs, inputs, host, ... }:
-let 
-  inherit (import ../../hosts/${host}/variables.nix) username;
-in {
+{ username, ... }:
+{
   imports = [ inputs.home-manager.nixosModules.home-manager ];
 
   home-manager = {
@@ -9,7 +7,7 @@ in {
     useGlobalPkgs = true;
     useUserPackages = true;
     backupFileExtension = "hm-backup";
-    extraSpecialArgs = { inherit inputs; };
+    extraSpecialArgs = { inherit inputs username host;};
     users.${username} = {
       imports = [ ../home ];
       home = {
