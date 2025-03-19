@@ -1,7 +1,7 @@
-{ lib, pkgs, config, ... }:
+{ host, ... }:
 let
-  nvidiaDriverChannel =
-    config.boot.kernelPackages.nvidiaPackages.beta; # stable, latest, beta, etc.
+  inherit (import ../../hosts/${host}/variables.nix) intelID nvidiaID;
+  nvidiaDriverChannel = config.boot.kernelPackages.nvidiaPackages.beta; # stable, latest, beta, etc.
 in {
 
   # Load nvidia driver for Xorg and Wayland
@@ -24,9 +24,9 @@ in {
         # reverseSync.enable = true;
 
         # CHANGEME: Change those values to match your hardware (if prime is imported)
-        # amdgpuBusId = "PCI:5:0:0"; # Set this to the bus ID of your AMD GPU if you have one
-        intelBusId = "PCI:0:2:0"; # Set this to the bus ID of your Intel GPU if you have one
-        nvidiaBusId = "PCI:1:0:0"; # Set this to the bus ID of your Nvidia GPU if you have one
+        # amdgpuBusId = "${amdID}"; # Set this to the bus ID of your AMD GPU if you have one
+        intelBusId = "${intelID}"; # Set this to the bus ID of your Intel GPU if you have one
+        nvidiaBusId = "${nvidiaID}"; # Set this to the bus ID of your Nvidia GPU if you have one
       };
     };
     graphics = {

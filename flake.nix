@@ -1,5 +1,5 @@
 {
-  description = "Nixos config flake";
+  description = "Nixos";
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
@@ -8,7 +8,7 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
+ 
     rust-overlay = {
       url = "github:oxalica/rust-overlay";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -20,13 +20,18 @@
     nixosConfigurations = {
       default = 
         nixpkgs.lib.nixosSystem {
+
 	  system = "x86_64-linux";
-          specialArgs = {inherit inputs;};
+	  host = "laptop";
+
+          specialArgs = {
+	    inherit inputs;
+	    inherit host;
+	  };
+
           modules = [
             ./hosts/laptop/configuration.nix
-            inputs.home-manager.nixosModules.default
-	    ./modules/overlays
-         ];
+          ];
         };
     };
   };

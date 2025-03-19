@@ -1,24 +1,16 @@
 { config, pkgs, inputs, ... }:
 
 {
-  imports =
-    [ 
-      ../../modules/nixosModules
+  imports = [ 
 
-      # Include the results of the hardware scan.
-      ./hardware-configuration.nix
+    ../../modules/core
 
-      # Config Variables
-      ./variables.nix
-    ];
+    # Include the results of the hardware scan.
+    ./hardware-configuration.nix
 
-  home-manager.users."${config.var.username}"= import ./home.nix;
+  ];
+
   
-
-
-
-
-
   # LEAVE ALONE
   system.stateVersion = "23.11"; # Did you read the comment?
 

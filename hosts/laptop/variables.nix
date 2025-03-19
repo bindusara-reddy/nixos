@@ -1,26 +1,26 @@
-{ config, lib, ... }: {
+{
 
-  config.var = {
-    hostname = "nixos";
-    username = "bindu";
-    configDirectory = "/home/" + config.var.username
-      + "/OS"; # The path of the nixos configuration directory
+  hostname = "nixos";
+  username = "bindu";
 
-    keyboardLayout = "us";
+  # Timezone Settings
+  timeZone = "Asia/Calcutta";
 
-    location = "Bengaluru";
-    timeZone = "Asia/Calcutta";
-    defaultLocale = "en_IN";
-    extraLocale = "en_IN";
+  # Locale Settings
+  defaultLocale = "en_IN";
+  extraLocale = "en_IN";
 
-    autoGarbageCollector = true;
-  };
+  # Program Options
+  browser = "firefox"; # Set Default Browser (google-chrome-stable for google-chrome)
+  terminal = "kitty"; # Set Default System Terminal
+  keyboardLayout = "us";
+  consolekeyMap = "us";
 
-  # Let this here
-  options = {
-    var = lib.mkOption {
-      type = lib.types.attrs;
-      default = { };
-    };
-  };
+  # For Nvidia Prime support
+  intelID = "PCI:1:0:0";
+  nvidiaID = "PCI:0:2:0";
+
+  # Enable Auto Garbage Collector
+  autoGarbageCollect = true;
+
 }
