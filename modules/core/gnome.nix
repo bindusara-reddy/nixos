@@ -46,6 +46,5 @@ in {
     simple-scan
     totem # video player
     yelp # help viewer
-    seahorse # password manager
   ];
 }
