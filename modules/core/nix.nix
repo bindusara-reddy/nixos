@@ -1,5 +1,6 @@
-{ config, inputs, ... }:
-let autoGarbageCollector = config.var.autoGarbageCollector;
+{ host, inputs, ... }:
+let 
+  inherit (import ../../hosts/${host}/variables.nix) autoGarbageCollect;
 in {
   nixpkgs.config = {
     allowUnfree = true;
@@ -19,7 +20,7 @@ in {
       ];
     };
     gc = {
-      automatic = autoGarbageCollector;
+      automatic = autoGarbageCollect;
       dates = "weekly";
       options = "--delete-older-than 7d";
     };
