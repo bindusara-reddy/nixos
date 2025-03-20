@@ -21,12 +21,16 @@ in {
     LC_TELEPHONE = "${extraLocale}";
     LC_TIME = "${extraLocale}";
   };
- 
-  environment.variables = {
-    XDG_DATA_HOME = "$HOME/.local/share";
-  };
 
-# Faster rebuilding
+  # XDG_Base_Directory Defaults
+  environment.sessionVariables = {
+    XDG_CACHE_HOME = "$HOME/.cache";
+    XDG_CONFIG_HOME = "$HOME/.config";
+    XDG_DATA_HOME = "$HOME/.local/share";
+    XDG_STATE_HOME = "$HOME/.local/state";
+  };  
+  
+  # Faster rebuilding
   documentation = {
     enable = true;
     doc.enable = false;
