@@ -32,7 +32,7 @@
         color_bg3 = "#665c54";
         color_blue = "#458588";
         color_aqua = "#689d6a";
-        color_green = "#98971a";
+        color_green = "#83e807";
         color_orange = "#d65d0e";
         color_purple = "#b16286";
         color_red = "#cc241d";
@@ -110,7 +110,7 @@
       line_break.disable = false;
       character = {
         disabled = false;
-        success_symbol = "[](bold fg:color_green)";
+        success_symbol = "[󰫈](bold fg:color_green)";
         error_symbol = "[](bold fg:color_red)";
         vimcmd_symbol = "[](bold fg:color_green)";
       };
