@@ -28,22 +28,14 @@
 
   };
 
-  programs.zsh = {
+  programs.nushell = {
 
     enable = true;
-    autosuggestion = {
-      enable = true;
-      strategy = [ "match_prev_cmd" "completion" "history" ];
-    };
 
     shellAliases = {
       ls = "eza";
     };
  
-    syntaxHighlighting = {
-      enable = true;
-      highlighters = [ "main" "brackets" "cursor" "root" ];
-    };
   };
 
   programs.oh-my-posh = {
