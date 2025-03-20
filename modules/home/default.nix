@@ -2,10 +2,16 @@
 
   imports = [
 
+    ./eza.nix
     ./firefox.nix
-    ./vscode.nix
-    ./tools.nix
+    ./git.nix
     ./home-packages.nix
+    ./kitty.nix
+    ./neovim.nix
+    ./nushell.nix
+    ./starship.nix
+    ./vscode.nix
+    ./zoxide.nix
 
   ];
 

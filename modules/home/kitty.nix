@@ -1,9 +1,5 @@
 { username, ... }: {
 
-  programs.git.enable = true;
-  programs.zoxide.enable = true;
-  programs.eza.enable = true;
-
   programs.kitty = {
     
     enable = true;
@@ -28,32 +24,4 @@
 
   };
 
-  programs.nushell = {
-
-    enable = true;
-
-    shellAliases = {
-      ls = "eza";
-    };
-
-    settings = {
-      show_banner = false;
-      completions = {
-       	case_sensitive = false;
-	quick = true;
-	partial = true;
-	algorithm = "prefix";
-      };
-    };
- 
-  };
-
-  programs.oh-my-posh = {
-
-    enable = true;
-    useTheme = "mojada";
-
-  };
-
-  programs.neovim.defaultEditor = true;
 }
