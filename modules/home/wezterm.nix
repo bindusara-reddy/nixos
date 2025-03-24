@@ -5,7 +5,6 @@
     extraConfig = 
       ''
       return {
-        window_decorations = "TITLE | RESIZE",
 	hide_mouse_cursor_when_typing = false,
 	inactive_pane_hsb = {
 	  saturation = 0.8,
