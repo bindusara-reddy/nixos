@@ -6,33 +6,37 @@
     settings = {
       vim = {
         theme = {
-	  enable = true;
-	  name = "gruvbox";
-	  style = "dark";
-	};
-	statusline.lualine.enable = true;
-	telescope.enable = true;
-	autocomplete.nvim-cmp.enable = true;
-	options = {
+	        enable = true;
+	        name = "gruvbox";
+	        style = "dark";
+	      };
+	      statusline.lualine.enable = true;
+	      telescope.enable = true;
+	      autocomplete.nvim-cmp.enable = true;
+	      options = {
           mouse = "a";
-          tabstop = 8;
+          tabstop = 2;
           autoindent = false;
           shiftwidth = 4;
         };
-	languages = {
-	  enableLSP = true;
-	  enableTreesitter = true;
+	      languages = {
+	        enableLSP = true;
+	        enableTreesitter = true;
           enableDAP = true;
           enableFormat = true;
-
-	  nix.enable = true;
-	  rust = {
+          nix.enable = true;
+          rust = {
             enable = true;
             crates.enable = true;
           };
-	  python.enable = true;
-	};
-	git.enable = true;
+	        python.enable = true;
+	      };
+	      git.enable = true;
+        filetree.nvimTree.enable = true;
+        terminal.toggleterm = {
+          enable = true;
+          lazygit.enable = true;
+        };
       };
     };
   };
