@@ -10,7 +10,6 @@
     ./neovim.nix
     ./nushell.nix
     ./starship.nix
-    ./vscode.nix
     ./wezterm.nix
     ./zoxide.nix
 
