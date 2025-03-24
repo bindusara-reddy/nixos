@@ -19,7 +19,7 @@
 	initial_rows = 15,
 	initial_cols = 100,
 	scrollback_lines = 2000,
-        color_scheme = "Batman",
+        color_scheme = "Gruvbox Dark (Gogh)",
 	tab_bar_at_bottom = true,
 	keys = {
 	  {
