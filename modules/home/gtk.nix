@@ -6,8 +6,8 @@
       name = "Bibata-Modern-Ice";
     };
     theme = {
-      package = pkgs.adw-gtk3;
-      name = "adw-gtk3";
+      package = pkgs.gruvbox-gtk-theme;
+      name = "Gruvbox-Dark-B-GS";
     };
     iconTheme = {
       package = pkgs.gruvbox-plus-icons;
