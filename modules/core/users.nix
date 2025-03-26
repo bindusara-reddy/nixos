@@ -6,7 +6,6 @@
 
     useGlobalPkgs = true;
     useUserPackages = true;
-    backupFileExtension = "hm-backup";
     extraSpecialArgs = { inherit inputs username host;};
     users.${username} = {
       imports = [ ../home ];
