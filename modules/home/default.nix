@@ -5,6 +5,7 @@
     ./bacon.nix
     ./eza.nix
     ./firefox.nix
+    ./gtk.nix
     ./git.nix
     ./home-packages.nix
     ./neovim.nix
