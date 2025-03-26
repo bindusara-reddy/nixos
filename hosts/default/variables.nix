@@ -7,9 +7,7 @@
 
   # Locale Settings
   defaultLocale = "en_IN";
-  extraLocale = "en_IN";
-  keyboardLayout = "us";
-  consolekeyMap = "us";
+  extraLocale = "en_IN"; 
 
   # For Nvidia Prime support
   intelID = "PCI:1:0:0";
