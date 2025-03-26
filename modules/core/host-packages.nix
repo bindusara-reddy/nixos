@@ -1,10 +1,15 @@
 {pkgs, ...}: {
 
   environment.systemPackages = with pkgs; [
-    gcc
-    wget
+    btop
     curl
-    xclip
+    gcc
+    light
+    pamixer
+    pavucontrol
+    wget
+    wl-clipboard
+    wlogout
   ];
 
 }
