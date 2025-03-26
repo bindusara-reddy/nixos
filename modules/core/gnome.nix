@@ -31,6 +31,7 @@
     gnome-maps
     gnome-music
     gnome-photos
+    gnome-shell-extensions
     gnome-tour
     gnome-console
     gnome-user-docs
