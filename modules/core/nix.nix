@@ -7,7 +7,7 @@ in {
   };
   nix = {
     nixPath = [ "nixpkgs=${inputs.nixpkgs}" ];
-    channel.enable = false;
+    channel.enable = false; 
     settings = {
       auto-optimise-store = true;
       experimental-features = [ "nix-command" "flakes" ];
