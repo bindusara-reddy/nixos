@@ -6,12 +6,12 @@
       name = "Bibata-Modern-Ice";
     };
     theme = {
-      package = pkgs.gruvbox-gtk-theme;
-      name = "Gruvbox-Dark-B-GS";
+      package = pkgs.whitesur-gtk-theme;
+      name = "WhiteSur-Dark-solid";
     };
     iconTheme = {
-      package = pkgs.gruvbox-plus-icons;
-      name = "Gruvbox-Plus-Dark";
+      package = pkgs.whitesur-icon-theme;
+      name = "WhiteSur-dark";
     };
   };
 }
