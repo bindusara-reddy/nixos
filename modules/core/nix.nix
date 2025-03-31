@@ -1,16 +1,17 @@
-{ host, inputs, ... }:
-let 
-  inherit (import ../../hosts/${host}/variables.nix) autoGarbageCollect;
-in {
+{
+  config,
+  inputs,
+  ...
+}: {
   nixpkgs.config = {
     allowUnfree = true;
   };
   nix = {
-    nixPath = [ "nixpkgs=${inputs.nixpkgs}" ];
-    channel.enable = false; 
+    nixPath = ["nixpkgs=${inputs.nixpkgs}"];
+    channel.enable = false;
     settings = {
       auto-optimise-store = true;
-      experimental-features = [ "nix-command" "flakes" ];
+      experimental-features = ["nix-command" "flakes"];
       substituters = [
         "https://cache.nixos.org/"
         "https://nix-community.cachix.org"
@@ -20,7 +21,7 @@ in {
       ];
     };
     gc = {
-      automatic = autoGarbageCollect;
+      automatic = config.var.autoGarbageCollect;
       dates = "weekly";
       options = "--delete-older-than 7d";
     };
