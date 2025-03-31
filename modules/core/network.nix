@@ -1,12 +1,6 @@
-{ pkgs, host, ... }: 
-let
-  inherit (import ../../hosts/${host}/variables.nix) hostname;
-in {
-
+{config, ...}: {
   networking = {
-    hostName = "${hostname}";
+    hostName = "${config.var.hostname}";
     networkmanager.enable = true;
   };
-
 }
-
