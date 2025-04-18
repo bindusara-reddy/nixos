@@ -9,7 +9,6 @@
     ./nix.nix
     ./nvidia.nix
     ./rust.nix
-    ./rustdesk.nix
     ./steam.nix
     ./systemd-boot.nix
     ./users.nix
