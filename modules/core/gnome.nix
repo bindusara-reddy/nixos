@@ -1,9 +1,8 @@
-{pkgs, ... }: {
-  
+{pkgs, ...}: {
   services.printing.enable = true;
 
   programs.nano.enable = false;
-  
+
   # Enable the GNOME Desktop Environment.
   services.xserver = {
     enable = true;
@@ -12,11 +11,11 @@
       wayland = true;
     };
     desktopManager.gnome.enable = true;
-    excludePackages = [ pkgs.xterm ];
+    excludePackages = [pkgs.xterm];
   };
 
   environment.gnome.excludePackages = with pkgs; [
-    baobab # disk 
+    baobab # disk
     cheese # photo booth
     epiphany # web browser
     evince # document viewer
@@ -25,7 +24,7 @@
     gedit # text editor
     gnome-characters
     gnome-contacts
-    gnome-connections
+    #gnome-connections
     gnome-font-viewer
     gnome-logs
     gnome-maps
