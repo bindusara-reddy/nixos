@@ -24,7 +24,7 @@
     gedit # text editor
     gnome-characters
     gnome-contacts
-    #gnome-connections
+    gnome-connections
     gnome-font-viewer
     gnome-logs
     gnome-maps
