@@ -4,5 +4,6 @@
     gcc
     wget
     wl-clipboard
+    rustdesk
   ];
 }
