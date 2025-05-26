@@ -13,6 +13,7 @@
 	      statusline.lualine.enable = true;
 	      telescope.enable = true;
 	      autocomplete.nvim-cmp.enable = true;
+        lsp.enable = true;
 	      options = {
           mouse = "a";
           tabstop = 2;
@@ -20,7 +21,6 @@
           shiftwidth = 4;
         };
 	      languages = {
-	        enableLSP = true;
 	        enableTreesitter = true;
           enableDAP = true;
           enableFormat = true;
