@@ -4,14 +4,16 @@
   programs.nano.enable = false;
 
   # Enable the GNOME Desktop Environment.
-  services.xserver = {
-    enable = true;
+  services = {
+    xserver = {
+      enable = true;
+      excludePackages = [pkgs.xterm];
+    };
     displayManager.gdm = {
       enable = true;
       wayland = true;
     };
     desktopManager.gnome.enable = true;
-    excludePackages = [pkgs.xterm];
   };
 
   environment.gnome.excludePackages = with pkgs; [
