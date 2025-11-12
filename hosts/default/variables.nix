@@ -23,7 +23,7 @@
 
     git = {
       email = "bindusara1252001@gmail.com";
-      username = "bindusara-reddy";
+      name = "bindusara-reddy";
     };
   };
 
