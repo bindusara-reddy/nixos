@@ -44,6 +44,39 @@ sudo tailscale up
 | `y`       | terminal file manager (yazi) |
 | `lg`      | lazygit |
 
+## Keys worth knowing
+
+**WezTerm** — one rule: pane & tab stuff lives on <kbd>ALT</kbd>, single chord.
+Plain CTRL keys always reach the shell; copy/paste stays <kbd>CTRL+SHIFT+C/V</kbd>.
+
+| keys | action |
+|------|--------|
+| `ALT+\` / `ALT+-` | split right / split down |
+| `ALT+h j k l` (or arrows) | move between panes |
+| `ALT+z` | zoom the current pane (again to unzoom) |
+| `ALT+w` | close pane |
+| `ALT+r` then `hjkl`/arrows | resize panes (`Esc` when done) |
+| `ALT+t` · `ALT+1…9` · `ALT+[` `]` | tabs: new · jump to · prev/next |
+
+**Shell (nushell)** — emacs-style line editing, the keys your fingers already know:
+arrows, `Ctrl+A`/`E` start/end, `Ctrl+W` delete word, `Alt+B`/`F` by word.
+`Ctrl+R` fuzzy-searches all history (atuin), `Tab` opens a completion menu
+(fuzzy — `nxrb` finds `nixos-rebuild`), `Ctrl+O` edits the current line in nvim.
+
+**Neovim** — <kbd>Space</kbd> is the leader; pause after pressing it and
+which-key shows everything. The daily set:
+
+| keys | action |
+|------|--------|
+| `Space ff` / `fg` / `fb` | find files / grep project / open buffers (telescope) |
+| `Space t` | file tree |
+| `Space gg` | lazygit, floating |
+| `Ctrl+t` | floating terminal |
+| `Tab` / `Shift+Tab` | next / previous buffer |
+| `Space q` | close buffer |
+| `Ctrl+h j k l` | move between splits |
+| `Ctrl+s` | save |
+
 **Add a package:** put it in [modules/home/home-packages.nix](modules/home/home-packages.nix)
 (user stuff) or [modules/core/host-packages.nix](modules/core/host-packages.nix) (system stuff),
 then `rebuild`.
