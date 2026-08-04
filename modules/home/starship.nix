@@ -1,9 +1,7 @@
-{ lib, ... }: {
-
+{lib, ...}: {
   programs.starship = {
     enable = true;
     settings = {
-
       "$schema" = "https://starship.rs/config-schema.json";
       format = lib.concatStrings [
         "[](color_orange)"
@@ -116,5 +114,4 @@
       };
     };
   };
-
 }

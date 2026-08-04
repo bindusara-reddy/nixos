@@ -44,11 +44,7 @@
         modules = [./hosts/${host}/configuration.nix];
       };
   in {
-    nixosConfigurations = {
-      "sal-9000" = mkHost "sal-9000";
-      # the old attr name still works: nixos-rebuild switch --flake .#default
-      default = self.nixosConfigurations."sal-9000";
-    };
+    nixosConfigurations."sal-9000" = mkHost "sal-9000";
 
     # nix fmt
     formatter.${system} = pkgs.alejandra;
