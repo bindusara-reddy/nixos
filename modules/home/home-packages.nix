@@ -27,6 +27,7 @@
 
     # gaming
     protonup-qt # GE-Proton installer for Steam
+    moonlight-qt # game-stream client for sunshine on deep-blue
 
     # AI CLIs
     claude-code
