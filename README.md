@@ -73,8 +73,9 @@ Default mode is **offload**: the Intel iGPU drives the screen, the RTX 3060 slee
 (RTD3) until you run something with `nvidia-offload` or a game from Steam with
 `gamemoderun %command%` in its launch options. Great battery, silent fans.
 
-The boot menu also has a **`gaming` specialisation**: the 3060 drives everything
-(sync mode). Pick that entry for external monitors/HDMI or long gaming sessions.
+If you ever need the 3060 to drive everything all the time (external monitors/HDMI
+are wired to it), resurrect the `gaming` specialisation from git history (it was
+removed in favor of a single boot entry — see the commit that touched this line).
 
 ## The fleet
 
