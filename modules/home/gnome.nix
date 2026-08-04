@@ -46,7 +46,6 @@
       # libadwaita apps ignore GTK themes — the accent color is the only
       # sanctioned way to warm them up; orange ≈ gruvbox #d65d0e
       accent-color = "orange";
-      enable-hot-corners = false; # stop accidental overview trips on the touchpad
       monospace-font-name = "JetBrainsMono Nerd Font 10";
     };
 
@@ -63,33 +62,10 @@
     # window buttons like a normal OS
     "org/gnome/desktop/wm/preferences" = {
       button-layout = "appmenu:minimize,maximize,close";
-      num-workspaces = 4;
     };
 
-    # fixed 4 workspaces with Super+N switching — the single biggest GNOME
-    # workflow upgrade: everything has a place, one chord away
-    "org/gnome/mutter" = {
-      dynamic-workspaces = false;
-      workspaces-only-on-primary = true;
-      edge-tiling = true;
-    };
-    # GNOME claims Super+1..4 for dash favorites by default — free them first
-    "org/gnome/shell/keybindings" = {
-      switch-to-application-1 = [];
-      switch-to-application-2 = [];
-      switch-to-application-3 = [];
-      switch-to-application-4 = [];
-    };
-    "org/gnome/desktop/wm/keybindings" = {
-      switch-to-workspace-1 = ["<Super>1"];
-      switch-to-workspace-2 = ["<Super>2"];
-      switch-to-workspace-3 = ["<Super>3"];
-      switch-to-workspace-4 = ["<Super>4"];
-      move-to-workspace-1 = ["<Super><Shift>1"];
-      move-to-workspace-2 = ["<Super><Shift>2"];
-      move-to-workspace-3 = ["<Super><Shift>3"];
-      move-to-workspace-4 = ["<Super><Shift>4"];
-    };
+    # dynamic workspaces, GNOME's default flow — the user likes it that way
+    "org/gnome/mutter".dynamic-workspaces = true;
 
     # dock: translucent, only retreats when a window needs the space
     "org/gnome/shell/extensions/dash-to-dock" = {
