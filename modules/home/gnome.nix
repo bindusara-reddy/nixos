@@ -8,7 +8,17 @@
     gnomeExtensions.clipboard-indicator
     gnomeExtensions.dash-to-dock
     gnomeExtensions.vitals
+
+    # lets GNOME launch Terminal=true apps (btop, yazi) — its built-in fallback
+    # only knows gnome-terminal/console/xterm, all excluded from this config
+    xdg-terminal-exec
   ];
+
+  # both the modern spec and the legacy gsettings key point at wezterm,
+  # so app-grid launches of terminal apps open in wezterm
+  xdg.configFile."xdg-terminals.list".text = ''
+    org.wezfurlong.wezterm.desktop
+  '';
 
   dconf.settings = {
     "org/gnome/shell" = {
@@ -43,6 +53,11 @@
     "org/gnome/desktop/peripherals/touchpad" = {
       tap-to-click = true;
       two-finger-scrolling-enabled = true;
+    };
+
+    "org/gnome/desktop/default-applications/terminal" = {
+      exec = "wezterm";
+      exec-arg = "start";
     };
 
     # window buttons like a normal OS
