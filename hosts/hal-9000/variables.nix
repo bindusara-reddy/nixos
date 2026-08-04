@@ -31,10 +31,6 @@
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMbBx13EqKUoPr72gt/EUabt6le66oYLF1ri2RT31xcF"
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINl67Nl2BC+7VXi5CmhrAUdcLv2blskDbD/H/qLhcqHQ"
     ];
-
-    # nightly restic backup of /home to deepblue over the tailnet —
-    # flip on after the two one-time steps in modules/core/backup.nix
-    backups = false;
   };
 
   # typed, so a misspelled knob is an eval error instead of a silent no-op
@@ -65,7 +61,6 @@
         sshAuthorizedKeys = lib.mkOption {
           type = lib.types.listOf lib.types.singleLineStr;
         };
-        backups = bool;
       };
     };
   };

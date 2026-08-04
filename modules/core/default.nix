@@ -2,7 +2,6 @@
   imports = [
     # System configuration
     ./audio.nix
-    ./backup.nix
     ./docker.nix
     ./fonts.nix
     ./gnome.nix
