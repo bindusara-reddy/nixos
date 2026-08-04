@@ -16,11 +16,70 @@
         tabline.nvimBufferline.enable = true; # open buffers as tabs along the top
         telescope.enable = true;
         autocomplete.nvim-cmp.enable = true;
-        lsp.enable = true;
+        lsp = {
+          enable = true;
+          trouble.enable = true; # pretty diagnostics panel (<leader>ld / <leader>lwd)
+          lspkind = {
+            enable = true; # VSCode-style icons in the completion menu
+            setupOpts.mode = "symbol_text";
+          };
+        };
 
         # pops up a cheat-sheet of keybinds when you pause mid-chord
         binds.whichKey.enable = true;
         autopairs.nvim-autopairs.enable = true;
+
+        # greeter screen on bare `nvim` — recent files + shortcuts
+        dashboard.alpha = {
+          enable = true;
+          theme = "theta";
+        };
+
+        ui = {
+          noice.enable = true; # floating cmdline + message routing, the big visual upgrade
+          illuminate.enable = true; # highlight other uses of the word under cursor
+          colorizer = {
+            enable = true; # show #b8bb26 in its actual color while editing themes
+            setupOpts.user_default_options = {
+              names = false; # don't colorize prose words like "red"
+              css = true;
+              mode = "background";
+            };
+          };
+          smartcolumn = {
+            enable = true; # line-length guide that only appears when a line crosses it
+            setupOpts.colorcolumn = "120";
+          };
+        };
+
+        visuals = {
+          indent-blankline.enable = true; # thin scope-aware indent guides
+          nvim-cursorline = {
+            enable = true;
+            setupOpts.cursorline = {
+              enable = true;
+              timeout = 0;
+              number = true;
+            };
+          };
+          fidget-nvim.enable = true; # unobtrusive LSP progress spinner
+        };
+
+        # pin the enclosing function/class signature while scrolling
+        treesitter.context = {
+          enable = true;
+          setupOpts = {
+            max_lines = 3;
+            mode = "cursor";
+          };
+        };
+
+        utility.surround = {
+          enable = true;
+          useVendoredKeybindings = false; # canonical ys/cs/ds, like every tutorial
+        };
+        comments.comment-nvim.enable = true; # gcc / gc to toggle comments
+        notes.todo-comments.enable = true; # highlight + search TODO/FIXME/HACK
 
         options = {
           mouse = "a";
