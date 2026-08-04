@@ -76,11 +76,10 @@
       move-to-workspace-4 = ["<Super><Shift>4"];
     };
 
-    # dock: shrunk, translucent, only retreats when a window needs the space
+    # dock: translucent, only retreats when a window needs the space
     "org/gnome/shell/extensions/dash-to-dock" = {
       dock-position = "BOTTOM";
-      dash-max-icon-size = 40;
-      custom-theme-shrink = true;
+      dash-max-icon-size = 48; # GNOME's normal size — 40 + shrink felt too small
       transparency-mode = "FIXED";
       background-opacity = 0.65;
       intellihide-mode = "FOCUS_APPLICATION_WINDOWS";
