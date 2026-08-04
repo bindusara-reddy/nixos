@@ -67,18 +67,22 @@ current line in nvim. `cd` is zoxide-powered: `cd proj` jumps to `~/Projects`
 from anywhere once visited; `cdi` opens a fuzzy picker. Typo'd a command?
 It tells you which nix package has it.
 
-**Neovim** — <kbd>Space</kbd> is the leader; pause after pressing it and
-which-key shows everything. The daily set:
+**Neovim** — <kbd>Space</kbd> is the leader (your other thumb, mirroring ALT);
+pause after pressing it and which-key shows everything. Splits rhyme with the
+terminal: same key, editor layer.
 
 | keys | action |
 |------|--------|
+| `jk` (insert mode, typed fast) | Escape — no corner-key trek |
+| `Space Enter` / `Space s` | split right / split down (same as ALT in wezterm) |
+| `Space w` | close split (ALT+w's editor twin) |
+| `Ctrl+h j k l` | move between splits |
 | `Space ff` / `fg` / `fb` | find files / grep project / open buffers (telescope) |
 | `Space t` | file tree |
 | `Space gg` | lazygit, floating |
 | `Ctrl+t` | floating terminal |
 | `Tab` / `Shift+Tab` | next / previous buffer |
 | `Space q` | close buffer |
-| `Ctrl+h j k l` | move between splits |
 | `Ctrl+s` | save |
 
 **Add a package:** put it in [modules/home/home-packages.nix](modules/home/home-packages.nix)
