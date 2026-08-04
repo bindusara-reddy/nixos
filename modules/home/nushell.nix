@@ -14,6 +14,11 @@
       ff = "fastfetch";
       lg = "lazygit";
 
+      # `hermes` = the jetson's hermes (its gateway, keys, skunkworks — the
+      # laptop is just the screen). `hermes-local` runs the laptop's own copy.
+      hermes = "ssh -t jetson /home/bindu/.local/bin/hermes";
+      hermes-local = "^hermes";
+
       # the daily drivers — nh knows the flake path from var.flakePath
       rebuild = "nh os switch";
       update = "nh os switch --update";
