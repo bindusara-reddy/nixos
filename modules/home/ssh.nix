@@ -11,8 +11,13 @@
         hostname = "100.110.162.72";
         user = "bindu";
         identityFile = "~/.ssh/id_ed25519_jetson";
-        # any `ssh jetson` also exposes the jetson's Hermes dashboard/gateway
-        # at http://localhost:9119 on this machine
+      };
+      # `ssh -N jetson-dash` tunnels the jetson's Hermes dashboard/gateway to
+      # http://localhost:9119 — separate alias so plain `ssh jetson` stays quiet
+      "jetson-dash" = {
+        hostname = "100.110.162.72";
+        user = "bindu";
+        identityFile = "~/.ssh/id_ed25519_jetson";
         LocalForward = "9119 127.0.0.1:9119";
       };
       "deepblue deep-blue" = {
