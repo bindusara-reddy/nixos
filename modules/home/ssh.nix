@@ -17,11 +17,6 @@
         user = "waterfly";
         identityFile = "~/.ssh/id_ed25519_amdbox";
       };
-      "amdbox" = {
-        hostname = "100.100.194.84";
-        user = "admin";
-        identityFile = "~/.ssh/id_ed25519_amdbox";
-      };
       "*" = {
         addKeysToAgent = "yes";
         serverAliveInterval = 60;
