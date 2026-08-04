@@ -11,6 +11,9 @@
         hostname = "100.110.162.72";
         user = "bindu";
         identityFile = "~/.ssh/id_ed25519_jetson";
+        # any `ssh jetson` also exposes the jetson's Hermes dashboard/gateway
+        # at http://localhost:9119 on this machine
+        LocalForward = "9119 127.0.0.1:9119";
       };
       "deepblue deep-blue" = {
         hostname = "100.111.247.29";
