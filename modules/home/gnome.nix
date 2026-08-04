@@ -1,12 +1,13 @@
 {pkgs, ...}: {
   # extensions get installed here, enabled via dconf below
+  # (gsconnect comes from core/gnome.nix's kdeconnect block — installing a
+  # second copy here risks version-skew breakage between the two profiles)
   home.packages = with pkgs; [
     gnomeExtensions.appindicator
     gnomeExtensions.blur-my-shell
     gnomeExtensions.caffeine
     gnomeExtensions.clipboard-indicator
     gnomeExtensions.dash-to-dock
-    gnomeExtensions.gsconnect
     gnomeExtensions.vitals
   ];
 

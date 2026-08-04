@@ -13,6 +13,7 @@
     ./gnome.nix
     ./gtk.nix
     ./git.nix
+    ./hermes.nix
     ./home-packages.nix
     ./lazygit.nix
     ./neovim.nix

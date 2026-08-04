@@ -1,8 +1,12 @@
 name: update-lock
 
-# manual button in the Actions tab: bumps flake.lock on the branch you run it
-# from, and the `check` workflow then validates the result.
-on: workflow_dispatch
+# manual button in the Actions tab + a monthly bump. Validation happens IN THIS
+# JOB before pushing: pushes made with the default GITHUB_TOKEN deliberately
+# never trigger other workflows, so `check` does not run on the bump commit.
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "0 3 1 * *" # 1st of the month, 03:00 UTC
 
 permissions:
   contents: write
@@ -12,9 +16,15 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: DeterminateSystems/nix-installer-action@main
+      - uses: DeterminateSystems/nix-installer-action@v22
 
       - run: nix flake update
+
+      - name: evaluate updated lock
+        run: nix build .#nixosConfigurations.sal-9000.config.system.build.toplevel --dry-run
+
+      - name: flake check
+        run: nix flake check
 
       - name: commit and push if changed
         run: |

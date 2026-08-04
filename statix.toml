@@ -1,0 +1,2 @@
+# generated file — nixos-generate-config's style is not ours to fix
+ignore = ["hosts/sal-9000/hardware-configuration.nix"]

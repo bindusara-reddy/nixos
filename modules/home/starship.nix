@@ -16,6 +16,7 @@
         "$c"
         "$rust"
         "$python"
+        "$nix_shell"
         "[](fg:color_blue bg:color_bg3)"
         "$docker_context"
         "[](fg:color_bg3 bg:color_bg1)"
@@ -30,7 +31,7 @@
         color_bg3 = "#665c54";
         color_blue = "#458588";
         color_aqua = "#689d6a";
-        color_green = "#83e807";
+        color_green = "#98971a";
         color_orange = "#d65d0e";
         color_purple = "#b16286";
         color_red = "#cc241d";
@@ -94,6 +95,12 @@
         style = "bg:color_blue";
         format = "[[ $symbol( $version) ](fg:color_fg0 bg:color_blue)]($style)";
       };
+      # shows when you're inside `nix develop` / a direnv dev shell
+      nix_shell = {
+        symbol = "";
+        style = "bg:color_blue";
+        format = "[[ $symbol $state ](fg:color_fg0 bg:color_blue)]($style)";
+      };
       docker_context = {
         symbol = "";
         style = "bg:color_bg3";
@@ -105,7 +112,7 @@
         style = "bg:color_bg1";
         format = "[[ 󱑂  $time ](fg:color_fg0 bg:color_bg1)]($style)";
       };
-      line_break.disable = false;
+      line_break.disabled = false;
       character = {
         disabled = false;
         success_symbol = "[󰫈](bold fg:color_green)";

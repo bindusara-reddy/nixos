@@ -31,9 +31,13 @@
   users.users.${config.var.username} = {
     isNormalUser = true;
     description = "${config.var.username}";
-    # video: brightness control; dialout: serial consoles (jetson & friends)
-    extraGroups = ["networkmanager" "wheel" "video" "dialout"];
+    # video: brightness control; dialout: serial consoles (jetson & friends);
+    # gamemode: without it gamemoderun silently does nothing
+    extraGroups = ["networkmanager" "wheel" "video" "dialout" "gamemode"];
     shell = pkgs.nushell;
     ignoreShellProgramCheck = true;
   };
+
+  # a login shell must be listed in /etc/shells (chsh, some display managers check)
+  environment.shells = [pkgs.nushell];
 }
