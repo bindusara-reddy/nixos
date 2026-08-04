@@ -46,17 +46,18 @@ sudo tailscale up
 
 ## Keys worth knowing
 
-**WezTerm** — one rule: pane & tab stuff lives on <kbd>ALT</kbd>, single chord.
+**WezTerm** — every binding is one <kbd>ALT</kbd>+key, nothing more.
 Plain CTRL keys always reach the shell; copy/paste stays <kbd>CTRL+SHIFT+C/V</kbd>.
+Resize panes by dragging the divider with the mouse.
 
 | keys | action |
 |------|--------|
-| `ALT+\` / `ALT+-` | split right / split down |
-| `ALT+h j k l` (or arrows) | move between panes |
+| `ALT+Enter` | split right |
+| `ALT+s` | split down |
+| `ALT+arrows` | move between panes |
 | `ALT+z` | zoom the current pane (again to unzoom) |
 | `ALT+w` | close pane |
-| `ALT+r` then `hjkl`/arrows | resize panes (`Esc` when done) |
-| `ALT+t` · `ALT+1…9` · `ALT+[` `]` | tabs: new · jump to · prev/next |
+| `ALT+t` / `ALT+1…9` | new tab / jump to tab |
 
 **Shell (nushell)** — emacs-style line editing, the keys your fingers already know:
 arrows, `Ctrl+A`/`E` start/end, `Ctrl+W` delete word, `Alt+B`/`F` by word.
