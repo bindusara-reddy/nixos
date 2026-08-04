@@ -13,14 +13,16 @@
       branch.sort = "-committerdate";
       column.ui = "auto";
     };
-    # syntax-highlighted diffs
-    delta = {
-      enable = true;
-      options = {
-        navigate = true;
-        line-numbers = true;
-        syntax-theme = "gruvbox-dark";
-      };
+  };
+
+  # syntax-highlighted diffs for git/lazygit
+  programs.delta = {
+    enable = true;
+    enableGitIntegration = true;
+    options = {
+      navigate = true;
+      line-numbers = true;
+      syntax-theme = "gruvbox-dark";
     };
   };
 

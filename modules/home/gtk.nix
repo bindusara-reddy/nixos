@@ -1,4 +1,8 @@
-{ pkgs, ... }: {
+{
+  pkgs,
+  config,
+  ...
+}: {
   gtk = {
     enable = true;
     cursorTheme = {
@@ -13,5 +17,7 @@
       package = pkgs.whitesur-icon-theme;
       name = "WhiteSur-dark";
     };
+    # newer home-manager stops theming GTK4 apps unless told; keep WhiteSur everywhere
+    gtk4.theme = config.gtk.theme;
   };
 }

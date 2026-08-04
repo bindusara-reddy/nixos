@@ -9,10 +9,8 @@
       enable = true;
       excludePackages = [pkgs.xterm];
     };
-    displayManager.gdm = {
-      enable = true;
-      wayland = true;
-    };
+    # GNOME 50+ is Wayland-only; the old `wayland = true` knob is gone
+    displayManager.gdm.enable = true;
     desktopManager.gnome.enable = true;
   };
 
