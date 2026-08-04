@@ -15,7 +15,8 @@
       "deepblue deep-blue" = {
         hostname = "100.111.247.29";
         user = "waterfly";
-        identityFile = "~/.ssh/id_ed25519_amdbox";
+        # historically named id_ed25519_amdbox; renamed when amdbox left the tailnet
+        identityFile = "~/.ssh/id_ed25519_deepblue";
       };
       "*" = {
         addKeysToAgent = "yes";
