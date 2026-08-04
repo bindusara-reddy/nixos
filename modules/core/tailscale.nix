@@ -1,6 +1,7 @@
 {
-  # join the tailnet with the other machines (jetson, deepblue, HAL-9000):
-  # run `sudo tailscale up` once after the first rebuild.
+  # join the tailnet with the other machines (jetson, deepblue, and SAL-9000 —
+  # the Windows half of this laptop): run `sudo tailscale up` once after the
+  # first rebuild.
   services.tailscale = {
     enable = true;
     useRoutingFeatures = "client";

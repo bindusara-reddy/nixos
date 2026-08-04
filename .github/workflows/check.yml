@@ -15,8 +15,8 @@ jobs:
 
       # full evaluation of the system closure — catches typos, renamed options,
       # missing packages, failed assertions. Does not compile anything.
-      - name: evaluate sal-9000
-        run: nix build .#nixosConfigurations.sal-9000.config.system.build.toplevel --dry-run
+      - name: evaluate hal-9000
+        run: nix build .#nixosConfigurations.hal-9000.config.system.build.toplevel --dry-run
 
       - name: flake check
         run: nix flake check
@@ -26,4 +26,4 @@ jobs:
         run: |
           nix run nixpkgs#alejandra -- --check .
           nix run nixpkgs#statix -- check .
-          nix run nixpkgs#deadnix -- --fail --exclude hosts/sal-9000/hardware-configuration.nix -- .
+          nix run nixpkgs#deadnix -- --fail --exclude hosts/hal-9000/hardware-configuration.nix -- .

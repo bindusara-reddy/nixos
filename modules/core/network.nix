@@ -4,7 +4,7 @@
     networkmanager.enable = true;
   };
 
-  # mDNS: find network printers, be reachable as sal-9000.local on the LAN
+  # mDNS: find network printers, be reachable as hal-9000.local on the LAN
   services.avahi = {
     enable = true;
     nssmdns4 = true;

@@ -1,5 +1,5 @@
 {
-  description = "Himalaya — NixOS for the MSI Katana GF66 (sal-9000)";
+  description = "Himalaya — NixOS for the MSI Katana GF66 (hal-9000)";
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
@@ -46,7 +46,7 @@
         modules = [./hosts/${host}/configuration.nix];
       };
   in {
-    nixosConfigurations."sal-9000" = mkHost "sal-9000";
+    nixosConfigurations."hal-9000" = mkHost "hal-9000";
 
     # nix fmt
     formatter.${system} = pkgs.alejandra;

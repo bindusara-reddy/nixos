@@ -10,13 +10,13 @@
   #   2. give root an ssh key deepblue accepts:
   #        sudo ssh-keygen -t ed25519 -N ""
   #        sudo ssh-copy-id waterfly@100.111.247.29
-  # then set `backups = true` in hosts/sal-9000/variables.nix and rebuild.
+  # then set `backups = true` in hosts/hal-9000/variables.nix and rebuild.
   #
-  # Restore drill: restic -r sftp:waterfly@100.111.247.29:/backups/sal-9000 snapshots
+  # Restore drill: restic -r sftp:waterfly@100.111.247.29:/backups/hal-9000 snapshots
   config = lib.mkIf config.var.backups {
     services.restic.backups.home = {
       initialize = true;
-      repository = "sftp:waterfly@100.111.247.29:/backups/sal-9000"; # deepblue
+      repository = "sftp:waterfly@100.111.247.29:/backups/hal-9000"; # deepblue
       passwordFile = "/root/restic-password";
       paths = ["/home/${config.var.username}"];
       exclude = [
