@@ -1,6 +1,6 @@
 {lib, ...}: {
   config.var = {
-    hostname = "sal-9000";
+    hostname = "hal-9000";
     username = "bindu";
 
     # Timezone Settings

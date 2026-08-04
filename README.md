@@ -2,7 +2,7 @@
 <p align="center">
   <img width="80%" src="https://github.com/user-attachments/assets/1d15cee3-9531-4436-9fc0-7ca9ae86d8bc" />
 </p>
-<p align="center">NixOS for the MSI Katana GF66 11UE (<code>sal-9000</code>) — i7-11800H · RTX 3060 · GNOME · nushell · nvf</p>
+<p align="center">NixOS for the MSI Katana GF66 11UE (<code>hal-9000</code>) — i7-11800H · RTX 3060 · GNOME · nushell · nvf</p>
 
 ---
 
@@ -18,7 +18,7 @@ git pull
 and commits the updated `flake.lock`. That's it. If you'd rather do it by hand:
 
 ```sh
-sudo nixos-rebuild switch --flake .#sal-9000
+sudo nixos-rebuild switch --flake .#hal-9000
 ```
 
 After the first successful switch, log out and back in (shell + session changes),
@@ -93,7 +93,7 @@ menu — the old system is always still there. From a working shell:
 ```
 flake.nix                 inputs (nixpkgs unstable, home-manager, rust-overlay, nvf,
                           nix-index-database, hermes-agent)
-hosts/sal-9000/
+hosts/hal-9000/
   variables.nix           hostname, username, timezone, GPU bus IDs — the knobs
   configuration.nix       glue + stateVersion (LEAVE ALONE)
   hardware-configuration.nix  generated; bootstrap.sh keeps it synced

@@ -3,7 +3,7 @@
 # Safe to run repeatedly. Old generations stay in the boot menu regardless.
 set -euo pipefail
 
-HOST="sal-9000"
+HOST="hal-9000"
 REPO_URL="https://github.com/bindusara-reddy/nixos"
 DIR="${HOME}/nixos"
 
