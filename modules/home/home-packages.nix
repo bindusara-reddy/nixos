@@ -1,7 +1,38 @@
 {pkgs, ...}: {
-  
   home.packages = with pkgs; [
+    # desktop
     vlc
-  ];
+    mpv
+    localsend # AirDrop-alike between all your devices
+    mission-center # pretty GUI system monitor
 
+    # cli toolbelt
+    ripgrep # grep, but instant (rg)
+    fd # find, but sane
+    jq
+    tree
+    unzip
+    zip
+    p7zip
+    ncdu # what's eating my disk (TUI)
+    duf # df, but readable
+    dust # du, but readable
+    tealdeer # tldr <cmd> — man pages' useful cousin
+
+    # monitoring the 3060
+    nvtopPackages.full
+
+    # dev
+    python3
+    uv # the python package manager
+    lazydocker
+
+    # gaming
+    protonup-qt # GE-Proton installer for Steam
+
+    # AI CLIs
+    claude-code
+    codex
+    gemini-cli
+  ];
 }

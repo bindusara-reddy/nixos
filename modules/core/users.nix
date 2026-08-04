@@ -10,6 +10,9 @@
   home-manager = {
     useGlobalPkgs = true;
     useUserPackages = true;
+    # if a dotfile already exists where home-manager wants to write, keep a
+    # .hm-backup copy instead of refusing to activate
+    backupFileExtension = "hm-backup";
     extraSpecialArgs = {inherit inputs;};
     users.${config.var.username} = {
       imports = [
@@ -28,7 +31,8 @@
   users.users.${config.var.username} = {
     isNormalUser = true;
     description = "${config.var.username}";
-    extraGroups = ["networkmanager" "wheel"];
+    # video: brightness control; dialout: serial consoles (jetson & friends)
+    extraGroups = ["networkmanager" "wheel" "video" "dialout"];
     shell = pkgs.nushell;
     ignoreShellProgramCheck = true;
   };
