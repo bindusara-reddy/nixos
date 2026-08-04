@@ -2,6 +2,9 @@
   imports = [inputs.nvf.homeManagerModules.default];
   programs.nvf = {
     enable = true;
+    # nvf's own knob — sets EDITOR/VISUAL to nvim for the whole session
+    # (programs.neovim.defaultEditor is a no-op here: that module is disabled)
+    defaultEditor = true;
     settings = {
       vim = {
         theme = {
@@ -21,12 +24,19 @@
         options = {
           mouse = "a";
           tabstop = 2;
-          autoindent = false;
-          shiftwidth = 4;
+          shiftwidth = 2;
+          expandtab = true;
           ignorecase = true;
           smartcase = true;
           scrolloff = 8;
           undofile = true; # undo survives closing the file
+        };
+
+        # yank/paste goes through the GNOME Wayland clipboard (wl-clipboard)
+        clipboard = {
+          enable = true;
+          registers = "unnamedplus";
+          providers.wl-copy.enable = true;
         };
         languages = {
           enableTreesitter = true;
@@ -52,5 +62,4 @@
       };
     };
   };
-  programs.neovim.defaultEditor = true;
 }

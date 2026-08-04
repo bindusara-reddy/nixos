@@ -2,7 +2,7 @@ name: check
 
 on:
   push:
-    branches: [main, revamp]
+    branches: [main]
   pull_request:
   workflow_dispatch:
 
@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: DeterminateSystems/nix-installer-action@main
+      - uses: DeterminateSystems/nix-installer-action@v22
 
       # full evaluation of the system closure — catches typos, renamed options,
       # missing packages, failed assertions. Does not compile anything.
@@ -20,3 +20,10 @@ jobs:
 
       - name: flake check
         run: nix flake check
+
+      # the same tools the devShell carries — formatting and lint stay honest
+      - name: lint
+        run: |
+          nix run nixpkgs#alejandra -- --check .
+          nix run nixpkgs#statix -- check .
+          nix run nixpkgs#deadnix -- --fail --exclude hosts/sal-9000/hardware-configuration.nix -- .

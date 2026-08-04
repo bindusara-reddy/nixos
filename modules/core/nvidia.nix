@@ -1,6 +1,7 @@
 {
   config,
   lib,
+  pkgs,
   ...
 }: {
   # Load nvidia driver for Xorg and Wayland
@@ -32,6 +33,9 @@
     graphics = {
       enable = true;
       enable32Bit = true;
+      # VA-API on the iGPU that actually renders the desktop — without it,
+      # video decode falls back to CPU (battery, fans)
+      extraPackages = with pkgs; [intel-media-driver];
     };
   };
 

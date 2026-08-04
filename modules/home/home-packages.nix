@@ -3,7 +3,6 @@
     # desktop
     vlc
     mpv
-    localsend # AirDrop-alike between all your devices
     mission-center # pretty GUI system monitor
 
     # cli toolbelt

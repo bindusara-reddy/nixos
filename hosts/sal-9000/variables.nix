@@ -1,15 +1,10 @@
-{
-  config,
-  lib,
-  ...
-}: {
+{lib, ...}: {
   config.var = {
-    # HAL 9000's twin sister from "2010" — the Windows half of this laptop is HAL-9000
     hostname = "sal-9000";
     username = "bindu";
 
     # Timezone Settings
-    timeZone = "Asia/Calcutta";
+    timeZone = "Asia/Kolkata"; # canonical tzdata name ("Asia/Calcutta" is a legacy alias)
 
     # Locale Settings
     defaultLocale = "en_IN";
@@ -36,12 +31,42 @@
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMbBx13EqKUoPr72gt/EUabt6le66oYLF1ri2RT31xcF"
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINl67Nl2BC+7VXi5CmhrAUdcLv2blskDbD/H/qLhcqHQ"
     ];
+
+    # nightly restic backup of /home to deepblue over the tailnet —
+    # flip on after the two one-time steps in modules/core/backup.nix
+    backups = false;
   };
 
-  options = {
-    var = lib.mkOption {
-      type = lib.types.attrs;
-      default = {};
+  # typed, so a misspelled knob is an eval error instead of a silent no-op
+  options.var = lib.mkOption {
+    description = "per-host knobs consumed by the modules";
+    type = lib.types.submodule {
+      options = let
+        str = lib.mkOption {type = lib.types.str;};
+        bool = lib.mkOption {type = lib.types.bool;};
+      in {
+        hostname = str;
+        username = str;
+        timeZone = str;
+        defaultLocale = str;
+        extraLocale = str;
+        intelID = str;
+        nvidiaID = str;
+        autoGarbageCollect = bool;
+        flakePath = str;
+        git = lib.mkOption {
+          type = lib.types.submodule {
+            options = {
+              email = str;
+              name = str;
+            };
+          };
+        };
+        sshAuthorizedKeys = lib.mkOption {
+          type = lib.types.listOf lib.types.singleLineStr;
+        };
+        backups = bool;
+      };
     };
   };
 }

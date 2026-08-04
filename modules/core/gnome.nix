@@ -20,14 +20,12 @@
     package = pkgs.gnomeExtensions.gsconnect;
   };
 
+  # current (GNOME 45+) app names — the old ones (cheese/evince/totem/gedit/…)
+  # are no longer in the core set and excluding them did nothing
   environment.gnome.excludePackages = with pkgs; [
     baobab # disk
-    cheese # photo booth
+    decibels # audio player (vlc/mpv cover it, like gnome-music before)
     epiphany # web browser
-    evince # document viewer
-    file-roller # archive manager
-    geary # email client
-    gedit # text editor
     gnome-characters
     gnome-contacts
     gnome-connections
@@ -35,15 +33,15 @@
     gnome-logs
     gnome-maps
     gnome-music
-    gnome-photos
-    gnome-shell-extensions
     gnome-tour
     gnome-console
     gnome-user-docs
     gnome-text-editor
     orca
+    papers # document viewer (evince's successor)
+    showtime # video player (totem's successor)
     simple-scan
-    totem # video player
+    snapshot # camera (cheese's successor)
     yelp # help viewer
   ];
 }

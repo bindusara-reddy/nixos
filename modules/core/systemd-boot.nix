@@ -2,6 +2,8 @@
   boot = {
     loader = {
       timeout = 10;
+      # let the bootloader installer write EFI variables (boot order etc.)
+      efi.canTouchEfiVariables = true;
       systemd-boot = {
         enable = true;
         consoleMode = "auto";

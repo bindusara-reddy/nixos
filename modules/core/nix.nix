@@ -18,8 +18,8 @@
       experimental-features = ["nix-command" "flakes"];
       warn-dirty = false;
       keep-outputs = true; # don't garbage-collect direnv dev shells
+      # cache.nixos.org is already a default substituter; only add extras
       substituters = [
-        "https://cache.nixos.org/"
         "https://nix-community.cachix.org"
       ];
       trusted-public-keys = [
@@ -33,16 +33,18 @@
     };
   };
 
-  # nicer rebuild UX: `nh os switch` (pretty diff of what changed), `nh search foo`
-  programs.nh = {
-    enable = true;
-    flake = config.var.flakePath;
+  programs = {
+    # nicer rebuild UX: `nh os switch` (pretty diff of what changed), `nh search foo`
+    nh = {
+      enable = true;
+      flake = config.var.flakePath;
+    };
+
+    # run binaries that weren't built for NixOS (downloaded tools, pip wheels, mason, …)
+    nix-ld.enable = true;
+
+    # `,foo` runs any package once without installing it
+    nix-index-database.comma.enable = true;
+    command-not-found.enable = false; # replaced by nix-index
   };
-
-  # run binaries that weren't built for NixOS (downloaded tools, pip wheels, mason, …)
-  programs.nix-ld.enable = true;
-
-  # `,foo` runs any package once without installing it
-  programs.nix-index-database.comma.enable = true;
-  programs.command-not-found.enable = false; # replaced by nix-index
 }

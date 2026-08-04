@@ -2,10 +2,12 @@
   programs.nushell = {
     enable = true;
     shellAliases = {
-      ls = "eza";
-      ll = "eza -l --icons --git";
-      la = "eza -la --icons --git";
-      lt = "eza --tree --level=2 --icons";
+      # no `ls = eza` — that would shadow nushell's structured ls and break
+      # pipelines like `ls | where size > 1mb`; ll/la/lt cover pretty listings
+      # (icons/git flags come from the eza module's own alias, see eza.nix)
+      ll = "eza -l";
+      la = "eza -la";
+      lt = "eza --tree --level=2";
       cat = "bat";
       vi = "nvim";
       vim = "nvim";

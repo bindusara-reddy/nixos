@@ -20,20 +20,22 @@
         scrollback_lines = 10000,
         color_scheme = "Gruvbox Dark (Gogh)",
         tab_bar_at_bottom = true,
+        -- CTRL|SHIFT, not bare CTRL: plain ^W/^U are delete-word/kill-line in the
+        -- shell and ^H is backspace — the terminal must keep delivering those
         keys = {
           {
             key = 'w',
-            mods = 'CTRL',
+            mods = 'CTRL|SHIFT',
             action = wezterm.action.CloseCurrentPane { confirm = true },
           },
           {
             key = 'h',
-            mods = 'CTRL',
+            mods = 'CTRL|SHIFT',
             action = wezterm.action.SplitHorizontal { domain = 'CurrentPaneDomain' },
           },
           {
             key = 'u',
-            mods = 'CTRL',
+            mods = 'CTRL|SHIFT',
             action = wezterm.action.SplitVertical { domain = 'CurrentPaneDomain' },
           },
         },
