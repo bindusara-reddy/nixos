@@ -1,0 +1,28 @@
+{
+  # the rest of the fleet, one word away. Copy the matching private keys from
+  # the Windows side (or generate new ones) into ~/.ssh first.
+  programs.ssh = {
+    enable = true;
+    matchBlocks = {
+      "jetson deep-thought" = {
+        hostname = "100.110.162.72";
+        user = "bindu";
+        identityFile = "~/.ssh/id_ed25519_jetson";
+      };
+      "deepblue deep-blue" = {
+        hostname = "100.111.247.29";
+        user = "waterfly";
+        identityFile = "~/.ssh/id_ed25519_amdbox";
+      };
+      "amdbox" = {
+        hostname = "100.100.194.84";
+        user = "admin";
+        identityFile = "~/.ssh/id_ed25519_amdbox";
+      };
+      "*" = {
+        addKeysToAgent = "yes";
+        serverAliveInterval = 60;
+      };
+    };
+  };
+}

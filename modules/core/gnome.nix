@@ -16,6 +16,12 @@
     desktopManager.gnome.enable = true;
   };
 
+  # phone <-> laptop integration for the GSConnect extension (opens its ports)
+  programs.kdeconnect = {
+    enable = true;
+    package = pkgs.gnomeExtensions.gsconnect;
+  };
+
   environment.gnome.excludePackages = with pkgs; [
     baobab # disk
     cheese # photo booth

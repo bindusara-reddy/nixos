@@ -1,0 +1,22 @@
+name: check
+
+on:
+  push:
+    branches: [main, revamp]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  eval:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: DeterminateSystems/nix-installer-action@main
+
+      # full evaluation of the system closure — catches typos, renamed options,
+      # missing packages, failed assertions. Does not compile anything.
+      - name: evaluate sal-9000
+        run: nix build .#nixosConfigurations.sal-9000.config.system.build.toplevel --dry-run
+
+      - name: flake check
+        run: nix flake check

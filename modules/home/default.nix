@@ -1,20 +1,26 @@
 {
-
   imports = [
-
+    ./atuin.nix
     ./bacon.nix
+    ./bat.nix
+    ./btop.nix
+    ./carapace.nix
+    ./direnv.nix
     ./eza.nix
+    ./fastfetch.nix
     ./firefox.nix
+    ./fzf.nix
+    ./gnome.nix
     ./gtk.nix
     ./git.nix
     ./home-packages.nix
+    ./lazygit.nix
     ./neovim.nix
     ./nushell.nix
+    ./ssh.nix
     ./starship.nix
     ./wezterm.nix
+    ./yazi.nix
     ./zoxide.nix
-
   ];
-
 }
-

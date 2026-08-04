@@ -24,7 +24,14 @@
     XDG_CONFIG_HOME = "$HOME/.config";
     XDG_DATA_HOME = "$HOME/.local/share";
     XDG_STATE_HOME = "$HOME/.local/state";
+
+    # Electron/Chromium apps (vscode, discord, …) render natively on Wayland
+    NIXOS_OZONE_WL = "1";
   };
+
+  # escape hatch for apps not in nixpkgs: flatpak install flathub <app>
+  # (first run once: flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo)
+  services.flatpak.enable = true;
 
   # Faster rebuilding
   documentation = {
