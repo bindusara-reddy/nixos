@@ -13,6 +13,7 @@
           style = "dark";
         };
         statusline.lualine.enable = true;
+        tabline.nvimBufferline.enable = true; # open buffers as tabs along the top
         telescope.enable = true;
         autocomplete.nvim-cmp.enable = true;
         lsp.enable = true;
@@ -38,6 +39,73 @@
           registers = "unnamedplus";
           providers.wl-copy.enable = true;
         };
+
+        # the plugins bring their own leader-based binds (leader = Space, see
+        # README); these fill the everyday gaps. which-key shows all of them.
+        keymaps = [
+          {
+            key = "<C-h>";
+            mode = "n";
+            action = "<C-w>h";
+            desc = "Focus split left";
+          }
+          {
+            key = "<C-j>";
+            mode = "n";
+            action = "<C-w>j";
+            desc = "Focus split below";
+          }
+          {
+            key = "<C-k>";
+            mode = "n";
+            action = "<C-w>k";
+            desc = "Focus split above";
+          }
+          {
+            key = "<C-l>";
+            mode = "n";
+            action = "<C-w>l";
+            desc = "Focus split right";
+          }
+          {
+            key = "<C-s>";
+            mode = "n";
+            action = ":w<CR>";
+            desc = "Save file";
+          }
+          {
+            key = "<C-s>";
+            mode = "i";
+            action = "<Esc>:w<CR>";
+            desc = "Save file";
+          }
+          {
+            key = "<Esc>";
+            mode = "n";
+            action = ":nohlsearch<CR>";
+            desc = "Clear search highlight";
+          }
+          # note: Tab in normal mode == Ctrl-I, so the jump-forward motion is
+          # sacrificed for one-key buffer switching — the friendlier trade
+          {
+            key = "<Tab>";
+            mode = "n";
+            action = ":BufferLineCycleNext<CR>";
+            desc = "Next buffer";
+          }
+          {
+            key = "<S-Tab>";
+            mode = "n";
+            action = ":BufferLineCyclePrev<CR>";
+            desc = "Previous buffer";
+          }
+          {
+            key = "<leader>q";
+            mode = "n";
+            action = ":bdelete<CR>";
+            desc = "Close buffer";
+          }
+        ];
         languages = {
           enableTreesitter = true;
           enableDAP = true;

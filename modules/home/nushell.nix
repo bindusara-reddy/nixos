@@ -21,13 +21,16 @@
     };
     settings = {
       show_banner = false;
-      edit_mode = "vi"; # you said you're good enough to use vim — prove it in the shell
+      # emacs = the standard readline keys everyone's fingers already know:
+      # arrows just work, Ctrl-A/E home/end, Ctrl-W delete word, Alt-B/F by word.
+      # (vim stays for editing — Ctrl-O drops the current line into nvim)
+      edit_mode = "emacs";
       buffer_editor = "nvim";
       completions = {
         case_sensitive = false;
         quick = true;
         partial = true;
-        algorithm = "prefix";
+        algorithm = "fuzzy"; # "nxrb" finds nixos-rebuild — forgiving > pedantic
       };
     };
   };
