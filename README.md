@@ -127,7 +127,7 @@ runs sshd, key-only, reachable **only over tailscale**.
 - **Backups**: a nightly restic backup of `/home` to deepblue is ready in
   [modules/core/backup.nix](modules/core/backup.nix) — do the two one-time steps
   in its header comment, then set `backups = true` in `variables.nix`.
-- `mission-center` (GUI) / `btop` / `nvtop` for watching the machine work.
+- `mission-center` (GUI) / `btop` (with GPU panel) for watching the machine work.
 - AI CLIs preinstalled: `claude`, `codex`, `gemini`, and `hermes` (Nous Research's
   self-improving agent — run `hermes setup` once to pick a provider, then just `hermes`).
 
