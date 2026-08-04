@@ -32,6 +32,56 @@
         partial = true;
         algorithm = "fuzzy"; # "nxrb" finds nixos-rebuild — forgiving > pedantic
       };
+      # sqlite history: bigger, with timestamps + cwd per command, and
+      # isolation keeps parallel wezterm panes from mixing up-arrow history
+      # (other panes' commands still reachable via Ctrl-R)
+      history = {
+        file_format = "sqlite";
+        max_size = 1000000;
+        sync_on_enter = true;
+        isolation = true;
+      };
+      # IDE-style completion dropdown: bordered, with the flag/command
+      # description in a side panel (replaces the flat columnar menu)
+      menus = [
+        {
+          name = "completion_menu";
+          only_buffer_difference = false;
+          marker = "| ";
+          type = {
+            layout = "ide";
+            max_completion_width = 50;
+            max_completion_height = 10;
+            border = true;
+            description_mode = "prefer_right";
+            min_description_width = 15;
+            max_description_width = 50;
+            max_description_height = 10;
+            description_offset = 1;
+          };
+          style = {
+            text = "green";
+            selected_text = {attr = "r";};
+            description_text = "yellow";
+            match_text = {attr = "u";};
+            selected_match_text = {attr = "ur";};
+          };
+        }
+      ];
     };
+    # gruvbox file colors for nushell's ls (eza/fd honor LS_COLORS too)
+    extraEnv = ''
+      $env.LS_COLORS = (vivid generate gruvbox-dark | str trim)
+    '';
+    # typo a command → get told which nix package provides it (nix-index db)
+    extraConfig = ''
+      $env.config.hooks.command_not_found = {|cmd|
+        try {
+          let pkgs = (nix-locate --minimal --no-group --type x --type s --top-level --whole-name $"/bin/($cmd)")
+          if ($pkgs | is-empty) { return null }
+          $"($cmd) may be provided by:\n($pkgs | lines | first 10 | str join \"\n\")\nrun once without installing: ,($cmd)"
+        }
+      }
+    '';
   };
 }

@@ -1,7 +1,6 @@
 {pkgs, ...}: {
   # extensions get installed here, enabled via dconf below
-  # (gsconnect comes from core/gnome.nix's kdeconnect block — installing a
-  # second copy here risks version-skew breakage between the two profiles)
+  # (no gsconnect — the phone is an iPhone; LocalSend covers file drops)
   home.packages = with pkgs; [
     gnomeExtensions.appindicator
     gnomeExtensions.blur-my-shell
@@ -20,7 +19,6 @@
         "caffeine@patapon.info"
         "clipboard-indicator@tudmotu.com"
         "dash-to-dock@micxgx.gmail.com"
-        "gsconnect@andyholmes.github.io"
         "Vitals@CoreCoding.com"
       ];
       favorite-apps = [
@@ -35,16 +33,75 @@
       color-scheme = "prefer-dark";
       clock-show-weekday = true;
       show-battery-percentage = true;
+      # libadwaita apps ignore GTK themes — the accent color is the only
+      # sanctioned way to warm them up; orange ≈ gruvbox #d65d0e
+      accent-color = "orange";
+      enable-hot-corners = false; # stop accidental overview trips on the touchpad
+      monospace-font-name = "JetBrainsMono Nerd Font 10";
     };
 
     "org/gnome/desktop/peripherals/touchpad" = {
       tap-to-click = true;
+      two-finger-scrolling-enabled = true;
     };
 
     # window buttons like a normal OS
     "org/gnome/desktop/wm/preferences" = {
       button-layout = "appmenu:minimize,maximize,close";
+      num-workspaces = 4;
     };
+
+    # fixed 4 workspaces with Super+N switching — the single biggest GNOME
+    # workflow upgrade: everything has a place, one chord away
+    "org/gnome/mutter" = {
+      dynamic-workspaces = false;
+      workspaces-only-on-primary = true;
+      edge-tiling = true;
+    };
+    # GNOME claims Super+1..4 for dash favorites by default — free them first
+    "org/gnome/shell/keybindings" = {
+      switch-to-application-1 = [];
+      switch-to-application-2 = [];
+      switch-to-application-3 = [];
+      switch-to-application-4 = [];
+    };
+    "org/gnome/desktop/wm/keybindings" = {
+      switch-to-workspace-1 = ["<Super>1"];
+      switch-to-workspace-2 = ["<Super>2"];
+      switch-to-workspace-3 = ["<Super>3"];
+      switch-to-workspace-4 = ["<Super>4"];
+      move-to-workspace-1 = ["<Super><Shift>1"];
+      move-to-workspace-2 = ["<Super><Shift>2"];
+      move-to-workspace-3 = ["<Super><Shift>3"];
+      move-to-workspace-4 = ["<Super><Shift>4"];
+    };
+
+    # dock: shrunk, translucent, only retreats when a window needs the space
+    "org/gnome/shell/extensions/dash-to-dock" = {
+      dock-position = "BOTTOM";
+      dash-max-icon-size = 40;
+      custom-theme-shrink = true;
+      transparency-mode = "FIXED";
+      background-opacity = 0.65;
+      intellihide-mode = "FOCUS_APPLICATION_WINDOWS";
+      click-action = "minimize-or-previews";
+      running-indicator-style = "DOTS";
+      show-trash = false;
+      show-mounts = false;
+    };
+
+    # blur the shell chrome (panel/overview/dock) — app blur stays off, it's
+    # the buggy half of the extension
+    "org/gnome/shell/extensions/blur-my-shell/panel" = {
+      blur = true;
+      static-blur = true;
+    };
+    "org/gnome/shell/extensions/blur-my-shell/overview".blur = true;
+    "org/gnome/shell/extensions/blur-my-shell/dash-to-dock" = {
+      blur = true;
+      static-blur = true;
+    };
+    "org/gnome/shell/extensions/blur-my-shell/applications".blur = false;
 
     # warm screen at night
     "org/gnome/settings-daemon/plugins/color" = {

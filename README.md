@@ -60,8 +60,11 @@ Plain CTRL keys always reach the shell; copy/paste stays <kbd>CTRL+SHIFT+C/V</kb
 
 **Shell (nushell)** — emacs-style line editing, the keys your fingers already know:
 arrows, `Ctrl+A`/`E` start/end, `Ctrl+W` delete word, `Alt+B`/`F` by word.
-`Ctrl+R` fuzzy-searches all history (atuin), `Tab` opens a completion menu
-(fuzzy — `nxrb` finds `nixos-rebuild`), `Ctrl+O` edits the current line in nvim.
+`Ctrl+R` fuzzy-searches all history (atuin), `Tab` opens an IDE-style completion
+menu with descriptions (fuzzy — `nxrb` finds `nixos-rebuild`), `Ctrl+O` edits the
+current line in nvim. `cd` is zoxide-powered: `cd proj` jumps to `~/Projects`
+from anywhere once visited; `cdi` opens a fuzzy picker. Typo'd a command?
+It tells you which nix package has it.
 
 **Neovim** — <kbd>Space</kbd> is the leader; pause after pressing it and
 which-key shows everything. The daily set:
@@ -118,7 +121,6 @@ runs sshd, key-only, reachable **only over tailscale**.
 
 ## Extras you might forget exist
 
-- **GSConnect**: pair your phone (KDE Connect app) — notifications, files, clipboard.
 - **Flatpak** for anything not in nixpkgs: `flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo` once, then `flatpak install flathub <app>`.
 - **LocalSend** for AirDrop-style file drops between all your machines.
 - **Firmware updates**: `fwupdmgr refresh && fwupdmgr update`.

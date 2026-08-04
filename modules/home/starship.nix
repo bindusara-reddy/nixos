@@ -21,6 +21,7 @@
         "$docker_context"
         "[](fg:color_bg3 bg:color_bg1)"
         "$time"
+        "$cmd_duration"
         "[ ](fg:color_bg1)"
         "$line_break$character"
       ];
@@ -79,6 +80,21 @@
       git_status = {
         style = "bg:color_aqua";
         format = "[[($all_status$ahead_behind )](fg:color_fg0 bg:color_aqua)]($style)";
+        # counts, not just symbols: "!2 +1 ⇡3" tells the whole story
+        ahead = "⇡\${count}";
+        behind = "⇣\${count}";
+        diverged = "⇕⇡\${ahead_count}⇣\${behind_count}";
+        untracked = "?\${count}";
+        staged = "+\${count}";
+        modified = "!\${count}";
+        renamed = "»\${count}";
+        deleted = "✘\${count}";
+      };
+      # how long the last command took (only shown past 2s)
+      cmd_duration = {
+        min_time = 2000;
+        format = "[[ 󱦟 $duration ](fg:color_fg0 bg:color_bg1)]($style)";
+        style = "bg:color_bg1";
       };
       c = {
         symbol = " ";

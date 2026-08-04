@@ -1,6 +1,7 @@
 {pkgs, ...}: {
   home.packages = with pkgs; [
     # desktop
+    google-chrome
     vlc
     mpv
     mission-center # pretty GUI system monitor
@@ -17,6 +18,7 @@
     duf # df, but readable
     dust # du, but readable
     tealdeer # tldr <cmd> — man pages' useful cousin
+    vivid # generates the gruvbox LS_COLORS used by ls/eza/fd (see nushell.nix)
 
     # monitoring the 3060
     nvtopPackages.full

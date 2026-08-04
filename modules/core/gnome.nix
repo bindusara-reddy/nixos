@@ -14,12 +14,6 @@
     desktopManager.gnome.enable = true;
   };
 
-  # phone <-> laptop integration for the GSConnect extension (opens its ports)
-  programs.kdeconnect = {
-    enable = true;
-    package = pkgs.gnomeExtensions.gsconnect;
-  };
-
   # current (GNOME 45+) app names — the old ones (cheese/evince/totem/gedit/…)
   # are no longer in the core set and excluding them did nothing
   environment.gnome.excludePackages = with pkgs; [
