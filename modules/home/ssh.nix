@@ -3,7 +3,10 @@
   # the Windows side (or generate new ones) into ~/.ssh first.
   programs.ssh = {
     enable = true;
-    matchBlocks = {
+    # explicit instead of home-manager's transitional implicit defaults;
+    # the "*" block below carries what we actually want everywhere
+    enableDefaultConfig = false;
+    settings = {
       "jetson deep-thought" = {
         hostname = "100.110.162.72";
         user = "bindu";
