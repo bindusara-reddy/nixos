@@ -101,7 +101,33 @@
 
         # the plugins bring their own leader-based binds (leader = Space, see
         # README); these fill the everyday gaps. which-key shows all of them.
+        # Splits deliberately rhyme with wezterm: ALT+Enter/s/w on the terminal
+        # layer = Space+Enter/s/w on the editor layer.
         keymaps = [
+          {
+            key = "jk";
+            mode = "i";
+            action = "<Esc>";
+            desc = "Escape without the corner-key trek";
+          }
+          {
+            key = "<leader><CR>";
+            mode = "n";
+            action = ":vsplit<CR>";
+            desc = "Split right";
+          }
+          {
+            key = "<leader>s";
+            mode = "n";
+            action = ":split<CR>";
+            desc = "Split down";
+          }
+          {
+            key = "<leader>w";
+            mode = "n";
+            action = ":close<CR>";
+            desc = "Close split";
+          }
           {
             key = "<C-h>";
             mode = "n";
