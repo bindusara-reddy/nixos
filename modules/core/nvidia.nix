@@ -1,6 +1,5 @@
 {
   config,
-  lib,
   pkgs,
   ...
 }: {
@@ -36,20 +35,6 @@
       # VA-API on the iGPU that actually renders the desktop — without it,
       # video decode falls back to CPU (battery, fans)
       extraPackages = with pkgs; [intel-media-driver];
-    };
-  };
-
-  # Extra boot entry "gaming": dGPU drives everything (sync mode) — pick it for
-  # external monitors or heavy gaming sessions; costs battery on the couch.
-  specialisation.gaming.configuration = {
-    system.nixos.tags = ["gaming"];
-    hardware.nvidia = {
-      powerManagement.finegrained = lib.mkForce false;
-      prime = {
-        offload.enable = lib.mkForce false;
-        offload.enableOffloadCmd = lib.mkForce false;
-        sync.enable = lib.mkForce true;
-      };
     };
   };
 }
