@@ -1,6 +1,7 @@
 {
   config,
   inputs,
+  pkgs,
   ...
 }: {
   imports = [inputs.nix-index-database.nixosModules.nix-index];
@@ -26,18 +27,23 @@
         "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
       ];
     };
-    gc = {
-      automatic = config.var.autoGarbageCollect;
-      dates = "weekly";
-      options = "--delete-older-than 7d";
-    };
   };
+
+  # nvd: `nvd diff /run/current-system result` — closure diffs outside nh
+  # nom: `nom build` — build log with a live dependency tree
+  environment.systemPackages = [pkgs.nvd pkgs.nix-output-monitor];
 
   programs = {
     # nicer rebuild UX: `nh os switch` (pretty diff of what changed), `nh search foo`
     nh = {
       enable = true;
       flake = config.var.flakePath;
+      # replaces nix.gc — nh clean also removes stale profiles, result
+      # symlinks and direnv gc roots that plain nix-collect-garbage keeps
+      clean = {
+        enable = config.var.autoGarbageCollect;
+        extraArgs = "--keep 5 --keep-since 7d"; # same policy as the `clean` alias
+      };
     };
 
     # run binaries that weren't built for NixOS (downloaded tools, pip wheels, mason, …)
