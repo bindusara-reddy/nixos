@@ -6,6 +6,7 @@
     mpv
     mission-center # pretty GUI system monitor
     zapzap # WhatsApp client (there is no official Linux app)
+    libreoffice-fresh
 
     # creation
     blender
