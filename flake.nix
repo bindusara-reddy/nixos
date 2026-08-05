@@ -53,7 +53,7 @@
 
     # nix develop — tools for hacking on this config
     devShells.${system}.default = pkgs.mkShell {
-      packages = with pkgs; [nil alejandra statix deadnix];
+      packages = with pkgs; [nil nixd alejandra statix deadnix];
     };
   };
 }
