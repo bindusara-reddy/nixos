@@ -1,5 +1,6 @@
 {
   imports = [
+    ./askpass.nix
     ./atuin.nix
     ./bacon.nix
     ./bat.nix
