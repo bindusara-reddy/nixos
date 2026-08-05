@@ -1,6 +1,8 @@
 [
     "org.wezfurlong.wezterm",
     "firefox",
+    "google-chrome",
+    "com.rtosta.zapzap",
     "com.system76.CosmicFiles",
     "steam",
     "com.system76.CosmicSettings",
