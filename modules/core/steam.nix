@@ -5,7 +5,9 @@
       remotePlay.openFirewall = true;
       dedicatedServer.openFirewall = true;
       localNetworkGameTransfers.openFirewall = true;
-      gamescopeSession.enable = true; # "Steam (gamescope)" session at the login screen
+      # gamescopeSession off — it added a confusing "Steam" entry at the login
+      # screen; Steam still works normally inside COSMIC (incl. gamescope via
+      # launch options)
       protontricks.enable = true;
       # GE-Proton, declaratively — shows up in Steam's compat-tool dropdown,
       # no protonup-qt downloads to re-do after cleanups
