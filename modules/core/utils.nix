@@ -1,7 +1,10 @@
 {config, ...}: {
   time = {
     timeZone = config.var.timeZone;
-    hardwareClockInLocalTime = true;
+    # RTC stays in UTC (the default): the kernel reads the RTC as UTC at
+    # early boot, so a local-time RTC made every boot start +5:30 ahead
+    # (wrong greeter/lock clock, wrong when offline). NixOS is the primary
+    # OS — Windows adapts via its RealTimeIsUniversal registry switch.
   };
 
   i18n.defaultLocale = "${config.var.defaultLocale}";
