@@ -6,8 +6,8 @@
   gtk = {
     enable = true;
     cursorTheme = {
-      package = pkgs.bibata-cursors;
-      name = "Bibata-Modern-Ice";
+      package = pkgs.whitesur-cursors;
+      name = "WhiteSur-cursors";
     };
     theme = {
       package = pkgs.whitesur-gtk-theme;

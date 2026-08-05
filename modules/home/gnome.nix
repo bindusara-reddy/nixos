@@ -46,6 +46,8 @@
       # libadwaita apps ignore GTK themes — the accent color is the only
       # sanctioned way to warm them up; orange ≈ gruvbox #d65d0e
       accent-color = "orange";
+      font-name = "Inter 11"; # SF-Pro-adjacent UI font to match WhiteSur
+      document-font-name = "Inter 11";
       monospace-font-name = "JetBrainsMono Nerd Font 10";
     };
 
@@ -59,9 +61,9 @@
       exec-arg = "start";
     };
 
-    # window buttons like a normal OS
+    # window buttons on the left, macOS order, to match the WhiteSur theme
     "org/gnome/desktop/wm/preferences" = {
-      button-layout = "appmenu:minimize,maximize,close";
+      button-layout = "close,minimize,maximize:appmenu";
     };
 
     # dynamic workspaces, GNOME's default flow — the user likes it that way
