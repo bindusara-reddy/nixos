@@ -5,6 +5,12 @@
     vlc
     mpv
     mission-center # pretty GUI system monitor
+    zapzap # WhatsApp client (there is no official Linux app)
+
+    # creation
+    blender
+    freecad
+    godot
 
     # cli toolbelt
     ripgrep # grep, but instant (rg)

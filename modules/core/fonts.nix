@@ -3,6 +3,7 @@
   # fall back to whatever fontconfig finds. Now they actually exist.
   fonts = {
     packages = with pkgs; [
+      inter # UI sans in the SF Pro mold — pairs with the WhiteSur look
       jetbrains-mono
       nerd-fonts.jetbrains-mono
       noto-fonts
