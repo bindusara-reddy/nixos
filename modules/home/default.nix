@@ -5,6 +5,7 @@
     ./bat.nix
     ./btop.nix
     ./carapace.nix
+    ./cosmic-settings.nix
     ./direnv.nix
     ./eza.nix
     ./fastfetch.nix
