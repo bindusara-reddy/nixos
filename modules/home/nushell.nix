@@ -83,7 +83,7 @@
     extraConfig = ''
       $env.config.hooks.command_not_found = {|cmd|
         try {
-          let pkgs = (nix-locate --minimal --no-group --type x --type s --top-level --whole-name $"/bin/($cmd)")
+          let pkgs = (nix-locate --minimal --no-group --type x --type s --whole-name $"/bin/($cmd)")
           if ($pkgs | is-empty) { return null }
           let top = ($pkgs | lines | first 10 | str join (char newline))
           $"($cmd) may be provided by:(char newline)($top)(char newline)run once without installing: ,($cmd)"
