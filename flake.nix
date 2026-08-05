@@ -4,9 +4,6 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
 
-    # stable channel — for packages broken on unstable (freecad, see home-packages.nix)
-    nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-25.05";
-
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";

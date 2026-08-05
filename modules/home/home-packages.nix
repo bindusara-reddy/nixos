@@ -20,8 +20,9 @@
 
     # creation
     blender
-    # unstable's freecad is a 1.1 dev snapshot with a broken (blank) 3D viewport
-    inputs.nixpkgs-stable.legacyPackages.${pkgs.system}.freecad
+    # plain unstable freecad (1.1.1) — the infamous "blank viewport" turned out
+    # to be a corrupt model file (empty BREP payloads), never freecad itself
+    freecad
     godot
 
     # cli toolbelt
