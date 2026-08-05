@@ -13,7 +13,9 @@
       local YELLOW = '#d79921'
 
       local config = {
-        window_decorations = "RESIZE",
+        -- frameless: COSMIC's server-side titlebar clashed with the gruvbox
+        -- look; move the window with Super+drag instead
+        window_decorations = "NONE",
         hide_tab_bar_if_only_one_tab = true,
         hide_mouse_cursor_when_typing = false,
         inactive_pane_hsb = {
@@ -34,7 +36,9 @@
         -- (no blur on GNOME/Mutter — that'd need Blur my Shell's app pipeline)
         window_background_opacity = 0.92,
         text_background_opacity = 1.0,
-        window_padding = { left = 12, right = 12, top = 12, bottom = 8 },
+        -- bottom clears COSMIC's active-window ring, which draws a few px
+        -- inside the window edge and was clipping the tab bar
+        window_padding = { left = 12, right = 12, top = 12, bottom = 16 },
 
         -- flash instead of beep
         audible_bell = "Disabled",
