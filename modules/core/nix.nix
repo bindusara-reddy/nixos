@@ -10,6 +10,7 @@
     allowUnfree = true;
   };
   nix = {
+    package = pkgs.lix; # community Nix fork: better errors/CLI, nixpkgs-compatible
     nixPath = ["nixpkgs=${inputs.nixpkgs}"];
     channel.enable = false;
     # `nix run nixpkgs#foo` / `nix shell nixpkgs#foo` reuse this flake's pin (no re-download)
