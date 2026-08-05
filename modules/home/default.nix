@@ -10,7 +10,6 @@
     ./fastfetch.nix
     ./firefox.nix
     ./fzf.nix
-    ./gnome.nix
     ./gtk.nix
     ./git.nix
     ./hermes.nix

@@ -1,5 +1,15 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  inputs,
+  ...
+}: {
   home.packages = with pkgs; [
+    # cosmic add-ons — applets appear in Settings → Desktop → Panel →
+    # Configure applets after install
+    cosmic-ext-tweaks # theming/tweak tool (panel roundness, spacing, themes)
+    cosmic-ext-applet-caffeine # keep-awake toggle, like the GNOME extension
+    cosmic-ext-applet-minimon # CPU/RAM in the panel, like Vitals
+
     # desktop
     google-chrome
     vlc
@@ -10,7 +20,8 @@
 
     # creation
     blender
-    freecad
+    # unstable's freecad is a 1.1 dev snapshot with a broken (blank) 3D viewport
+    inputs.nixpkgs-stable.legacyPackages.${pkgs.system}.freecad
     godot
 
     # cli toolbelt
