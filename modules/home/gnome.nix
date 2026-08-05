@@ -95,6 +95,11 @@
     };
     "org/gnome/shell/extensions/blur-my-shell/applications".blur = false;
 
+    # never auto-suspend while on AC (battery keeps GNOME's default suspend)
+    "org/gnome/settings-daemon/plugins/power" = {
+      sleep-inactive-ac-type = "nothing";
+    };
+
     # warm screen at night
     "org/gnome/settings-daemon/plugins/color" = {
       night-light-enabled = true;
