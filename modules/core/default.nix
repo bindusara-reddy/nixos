@@ -2,9 +2,9 @@
   imports = [
     # System configuration
     ./audio.nix
+    ./cosmic.nix
     ./docker.nix
     ./fonts.nix
-    ./gnome.nix
     ./host-packages.nix
     ./network.nix
     ./nix.nix
