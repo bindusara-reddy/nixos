@@ -13,7 +13,7 @@
     # desktop
     google-chrome
     vlc
-    mpv
+    loupe # image viewer — COSMIC ships none and Files needs something to open photos
     mission-center # pretty GUI system monitor
     zapzap # WhatsApp client (there is no official Linux app)
     libreoffice-fresh
