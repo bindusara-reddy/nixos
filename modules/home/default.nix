@@ -15,6 +15,7 @@
     ./git.nix
     ./hermes.nix
     ./home-packages.nix
+    ./jujutsu.nix
     ./lazygit.nix
     ./neovim.nix
     ./nushell.nix
