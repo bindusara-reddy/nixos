@@ -1,8 +1,4 @@
-{
-  pkgs,
-  inputs,
-  ...
-}: {
+{pkgs, ...}: {
   home.packages = with pkgs; [
     # cosmic add-ons — applets appear in Settings → Desktop → Panel →
     # Configure applets after install

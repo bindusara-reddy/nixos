@@ -1,8 +1,13 @@
 {pkgs, ...}: {
   # COSMIC (System76's Rust DE) — the only session; cosmic-greeter
   # replaces GDM at login.
-  services.desktopManager.cosmic.enable = true;
-  services.displayManager.cosmic-greeter.enable = true;
+  services = {
+    desktopManager.cosmic.enable = true;
+    displayManager.cosmic-greeter.enable = true;
+
+    # kept from the old gnome.nix (not GNOME-specific)
+    printing.enable = true;
+  };
 
   # stock COSMIC apps replaced by better ones already installed:
   # terminal → wezterm, player → vlc, reader → firefox handles pdfs,
@@ -14,7 +19,5 @@
     cosmic-reader
   ];
 
-  # kept from the old gnome.nix (not GNOME-specific)
-  services.printing.enable = true;
   programs.nano.enable = false;
 }
