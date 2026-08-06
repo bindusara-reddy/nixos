@@ -2,6 +2,7 @@
   imports = [
     ./askpass.nix
     ./atuin.nix
+    ./avatar.nix
     ./bacon.nix
     ./bat.nix
     ./btop.nix

@@ -2,7 +2,7 @@
 <p align="center">
   <img width="80%" src="https://github.com/user-attachments/assets/1d15cee3-9531-4436-9fc0-7ca9ae86d8bc" />
 </p>
-<p align="center">NixOS for the MSI Katana GF66 11UE (<code>hal-9000</code>) — i7-11800H · RTX 3060 · GNOME · nushell · nvf</p>
+<p align="center">NixOS for the MSI Katana GF66 11UE (<code>hal-9000</code>) — i7-11800H · RTX 3060 · COSMIC · nushell · nvf</p>
 
 ---
 
@@ -89,9 +89,16 @@ terminal: same key, editor layer.
 (user stuff) or [modules/core/host-packages.nix](modules/core/host-packages.nix) (system stuff),
 then `rebuild`.
 
-**Something broke after a rebuild?** Reboot and pick the previous generation in the boot
-menu — the old system is always still there. From a working shell:
-`sudo nixos-rebuild switch --rollback` does the same without rebooting.
+**Something broke after a rebuild?** Normally you'd reboot and pick the previous
+generation, but the profile was deliberately collapsed to a single generation
+(numbered 1) after the 2026-08 reinstall — **there is nothing to roll back to**
+until you've built a few more. `--rollback` will fail, and the boot menu has one
+entry. Recover by fixing the config and rebuilding, or from the Ubuntu image on
+the USB stick (mount `/dev/disk/by-label/nixos`, chroot, rebuild) — the NixOS
+installer was wiped off that stick.
+
+Once you have several generations again, the old advice applies:
+`sudo nixos-rebuild switch --rollback`, or pick an older entry at boot.
 
 ## What's where
 
@@ -102,10 +109,10 @@ hosts/hal-9000/
   variables.nix           hostname, username, timezone, GPU bus IDs — the knobs
   configuration.nix       glue + stateVersion (LEAVE ALONE)
   hardware-configuration.nix  generated; bootstrap.sh keeps it synced
-modules/core/             system: boot, nvidia, gnome, audio, network, ssh,
+modules/core/             system: boot, nvidia, cosmic, audio, network, ssh,
                           tailscale, power, fonts, steam, docker, rust, nix itself
 modules/home/             your user: nushell, starship, wezterm, nvf (neovim),
-                          git, atuin, gnome tweaks, packages, ssh hosts…
+                          git, atuin, cosmic settings, packages, login avatar…
 ```
 
 ## The GPU situation (important on this laptop)
@@ -120,15 +127,28 @@ removed in favor of a single boot entry — see the commit that touched this lin
 
 ## The fleet
 
-`ssh jetson` / `ssh deepblue` — hosts are preconfigured (tailnet IPs).
-Copy the private keys from wherever they live into `~/.ssh/` first. This machine also
-runs sshd, key-only, reachable **only over tailscale**.
+Currently a fleet of one. `deepblue` and the jetson left the tailnet in 2026-08 and
+their keys were destroyed with them, so the per-host `ssh` blocks that pointed at
+`100.x` addresses are gone from [modules/home/ssh.nix](modules/home/ssh.nix) — add
+them back there if either machine rejoins. Only `~/.ssh/id_ed25519` (GitHub) remains.
+
+This machine runs sshd, key-only, reachable **only over tailscale** (`hal-9000`).
+
+`deepblue` still runs Sunshine, and Moonlight reaches it over plain LAN via mDNS —
+no tailnet needed. `moonlight` finds `deep-blue.local` on its own; pair once with
+`moonlight pair <ip> --pin 1234`, entering the same PIN in Sunshine's web UI on
+port 47990.
 
 ## Extras you might forget exist
 
 - **Flatpak** for anything not in nixpkgs: `flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo` once, then `flatpak install flathub <app>`.
 - **LocalSend** for AirDrop-style file drops between all your machines.
 - **Firmware updates**: `fwupdmgr refresh && fwupdmgr update`.
+- **Login avatar** lives in [modules/home/avatar.nix](modules/home/avatar.nix) as
+  `~/.face`. NixOS has no `users.users.<name>.icon`, but AccountsService — what
+  cosmic-greeter reads — falls back to `~/.face`, so home-manager can own it with
+  no root and no mutable state under `/var/lib`. Check it took with
+  `busctl --system get-property org.freedesktop.Accounts /org/freedesktop/Accounts/User1000 org.freedesktop.Accounts.User IconFile`.
 - `mission-center` (GUI) / `btop` (with GPU panel) for watching the machine work.
 - AI CLIs preinstalled: `claude`, `codex`, `gemini`, and `hermes` (Nous Research's
   self-improving agent — run `hermes setup` once to pick a provider, then just `hermes`).
