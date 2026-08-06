@@ -25,12 +25,23 @@ elif [ ! -d "${DIR}" ]; then
 fi
 cd "${DIR}"
 
-# the machine's real hardware scan wins over whatever the repo carries
+# the machine's real hardware scan wins over whatever the repo carries.
+# nixos-generate-config emits unformatted nix, and check.yml runs
+# `alejandra --check .` across the whole repo — so format the scan before
+# comparing, or every run of this script re-breaks CI. Formatting first also
+# keeps the compare honest: without it the raw file never equals the
+# formatted one, and this block would copy on every single run.
 LIVE=/etc/nixos/hardware-configuration.nix
 OURS="hosts/${HOST}/hardware-configuration.nix"
-if [ -f "${LIVE}" ] && ! cmp -s "${LIVE}" "${OURS}"; then
-  cp "${LIVE}" "${OURS}"
-  echo ">> synced ${OURS} from ${LIVE}"
+if [ -f "${LIVE}" ]; then
+  SCAN="$(mktemp --suffix=.nix)"
+  trap 'rm -f "${SCAN}"' EXIT
+  cp "${LIVE}" "${SCAN}"
+  nix run nixpkgs#alejandra -- --quiet "${SCAN}" >/dev/null 2>&1 || true
+  if ! cmp -s "${SCAN}" "${OURS}"; then
+    cp "${SCAN}" "${OURS}"
+    echo ">> synced ${OURS} from ${LIVE}"
+  fi
 fi
 
 echo ">> rebuilding as flake .#${HOST} (sudo will ask for your password)"
