@@ -34,7 +34,13 @@
     gh = {
       enable = true;
       gitCredentialHelper.enable = true;
-      settings.git_protocol = "https";
     };
   };
+
+  # home-manager always symlinks gh/config.yml into the store, and `gh auth
+  # login` wants to write that file — it fails with EROFS partway through,
+  # after the token is already in the keyring. Let gh own the file. The one
+  # setting worth having, git_protocol = https, is gh's own default and is
+  # recorded per-host in hosts.yml regardless.
+  xdg.configFile."gh/config.yml".enable = false;
 }
