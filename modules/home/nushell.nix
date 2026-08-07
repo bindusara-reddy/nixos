@@ -19,8 +19,8 @@
       hermes-jetson = "ssh -t jetson /home/bindu/.local/bin/hermes";
 
       # the daily drivers — nh knows the flake path from var.flakePath
-      # (`rebuild` is a def in extraConfig below — it needs logic an alias can't hold)
-      update = "nh os switch --update";
+      # (`rebuild` and `update` are defs in extraConfig below — they need logic
+      # an alias can't hold)
       # keep only the live generation — running this forfeits rollback until the
       # next successful rebuild; the weekly auto-clean (nix.nix) still keeps 5/7d
       clean = "nh clean all --keep 1 --keep-since 0h";
@@ -92,19 +92,28 @@
         }
       }
 
-      # rebuild = jj-commit brand-new files, then `nh os switch`. Flakes only
-      # include git-*tracked* files, and jj keeps new files out of git's index
-      # until a commit lands them in HEAD — so a plain rebuild dies with
-      # "path does not exist" while `jj st` swears the file is right there.
+      # Flakes only include git-*tracked* files, and jj keeps new files out of
+      # git's index until a commit lands them in HEAD — so a plain rebuild dies
+      # with "path does not exist" while `jj st` swears the file is right there.
       # Edits to already-tracked files need no commit: nix reads dirty contents.
-      def rebuild [] {
+      def jj-track-new [caller: string] {
         let flake = "${osConfig.var.flakePath}"
         let new = (git -C $flake ls-files --others --exclude-standard | lines)
         if ($new | is-not-empty) {
-          print $"rebuild: jj-committing new files the flake can't see yet: ($new | str join ', ')"
-          jj -R $flake commit -m "rebuild: auto-commit to track new files"
+          print $"($caller): jj-committing new files the flake can't see yet: ($new | str join ', ')"
+          jj -R $flake commit -m $"($caller): auto-commit to track new files"
         }
+      }
+
+      # rebuild = apply the config as-is; update = bump all flake inputs first
+      def rebuild [] {
+        jj-track-new rebuild
         nh os switch
+      }
+
+      def update [] {
+        jj-track-new update
+        nh os switch --update
       }
     '';
   };
