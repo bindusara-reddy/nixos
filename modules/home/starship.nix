@@ -10,8 +10,13 @@
         "[](bg:color_yellow fg:color_orange)"
         "$directory"
         "[](fg:color_yellow bg:color_aqua)"
-        "$git_branch"
-        "$git_status"
+        # jj first: in a jj repo the custom.git_* modules stay silent, and
+        # outside one they render the built-ins via `starship module`. The
+        # built-ins are configured below but kept out of this format string,
+        # otherwise they would draw twice.
+        "\${custom.jj}"
+        "\${custom.git_branch}"
+        "\${custom.git_status}"
         "[](fg:color_aqua bg:color_blue)"
         "$c"
         "$rust"
@@ -89,6 +94,37 @@
         modified = "!\${count}";
         renamed = "»\${count}";
         deleted = "✘\${count}";
+      };
+      # jj keeps git's HEAD detached and its index a commit behind, so the
+      # built-in git modules read a jj repo as "HEAD" with everything jj has
+      # already committed showing up as untracked. These three replace them.
+      # shell: starship would otherwise run these through STARSHIP_SHELL, i.e.
+      # nushell, which cannot parse `>/dev/null 2>&1 ||`. It pipes the command
+      # in on stdin, so this is ["sh"] and not ["sh" "-c"].
+      custom.jj = {
+        description = "bookmark (or change id) of the working-copy commit";
+        when = "jj root";
+        shell = ["sh"];
+        # --ignore-working-copy: never let drawing a prompt snapshot the repo
+        command = "jj log -r @ --no-graph --ignore-working-copy --limit 1 -T 'separate(\" \", coalesce(bookmarks.join(\",\"), change_id.shortest(6)), if(conflict, \"×\"), if(empty, \"\", \"!\"))'";
+        symbol = "󱗆";
+        style = "bg:color_aqua";
+        format = "[[ $symbol $output ](fg:color_fg0 bg:color_aqua)]($style)";
+        ignore_timeout = true;
+      };
+      custom.git_branch = {
+        description = "built-in git_branch, but only outside a jj repo";
+        when = true;
+        shell = ["sh"];
+        command = "jj root >/dev/null 2>&1 || starship module git_branch";
+        format = "$output";
+      };
+      custom.git_status = {
+        description = "built-in git_status, but only outside a jj repo";
+        when = true;
+        shell = ["sh"];
+        command = "jj root >/dev/null 2>&1 || starship module git_status";
+        format = "$output";
       };
       # how long the last command took (only shown past 2s)
       cmd_duration = {
