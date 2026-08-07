@@ -1,4 +1,4 @@
-{
+{osConfig, ...}: {
   programs.nushell = {
     enable = true;
     shellAliases = {
@@ -19,9 +19,11 @@
       hermes-jetson = "ssh -t jetson /home/bindu/.local/bin/hermes";
 
       # the daily drivers — nh knows the flake path from var.flakePath
-      rebuild = "nh os switch";
+      # (`rebuild` is a def in extraConfig below — it needs logic an alias can't hold)
       update = "nh os switch --update";
-      clean = "nh clean all --keep 5 --keep-since 7d";
+      # keep only the live generation — running this forfeits rollback until the
+      # next successful rebuild; the weekly auto-clean (nix.nix) still keeps 5/7d
+      clean = "nh clean all --keep 1 --keep-since 0h";
     };
     settings = {
       show_banner = false;
@@ -88,6 +90,21 @@
           let top = ($pkgs | lines | first 10 | str join (char newline))
           $"($cmd) may be provided by:(char newline)($top)(char newline)run once without installing: ,($cmd)"
         }
+      }
+
+      # rebuild = jj-commit brand-new files, then `nh os switch`. Flakes only
+      # include git-*tracked* files, and jj keeps new files out of git's index
+      # until a commit lands them in HEAD — so a plain rebuild dies with
+      # "path does not exist" while `jj st` swears the file is right there.
+      # Edits to already-tracked files need no commit: nix reads dirty contents.
+      def rebuild [] {
+        let flake = "${osConfig.var.flakePath}"
+        let new = (git -C $flake ls-files --others --exclude-standard | lines)
+        if ($new | is-not-empty) {
+          print $"rebuild: jj-committing new files the flake can't see yet: ($new | str join ', ')"
+          jj -R $flake commit -m "rebuild: auto-commit to track new files"
+        }
+        nh os switch
       }
     '';
   };
