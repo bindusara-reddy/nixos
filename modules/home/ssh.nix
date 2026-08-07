@@ -5,12 +5,9 @@
     # the "*" block below carries what we actually want everywhere
     enableDefaultConfig = false;
     settings = {
-      # deepblue and the jetson rejoined 2026-08 as nodes shared into the
-      # tailnet; MagicDNS names rather than the 100.x IPs, which changed
-      # across the leave/rejoin. The old per-host keys died with the old
-      # nodes, so these are freshly generated — one key per host, never the
-      # id_ed25519 that authenticates to GitHub. deepblue in particular is
-      # someone else's machine with other people's keys in authorized_keys.
+      # MagicDNS names rather than 100.x IPs, which change when a node leaves
+      # and rejoins. One key per host, never the id_ed25519 that authenticates
+      # to GitHub, so a single host can be revoked on its own.
       "deepblue deep-blue" = {
         hostname = "deep-blue.taild98811.ts.net";
         user = "waterfly";
