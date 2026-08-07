@@ -53,8 +53,8 @@
       # what hermes's cua-driver links beyond the default set (`ldd` said so);
       # extend this list when some other downloaded binary reports one missing
       libraries = with pkgs; [
-        xorg.libX11
-        xorg.libXi
+        libx11
+        libxi
         libxkbcommon
       ];
     };
