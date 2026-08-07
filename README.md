@@ -89,16 +89,14 @@ terminal: same key, editor layer.
 (user stuff) or [modules/core/host-packages.nix](modules/core/host-packages.nix) (system stuff),
 then `rebuild`.
 
-**Something broke after a rebuild?** Normally you'd reboot and pick the previous
-generation, but the profile was deliberately collapsed to a single generation
-(numbered 1) after the 2026-08 reinstall — **there is nothing to roll back to**
-until you've built a few more. `--rollback` will fail, and the boot menu has one
-entry. Recover by fixing the config and rebuilding, or from the Ubuntu image on
-the USB stick (mount `/dev/disk/by-label/nixos`, chroot, rebuild) — the NixOS
-installer was wiped off that stick.
+**Something broke after a rebuild?** Reboot and pick the previous generation in the
+boot menu, or `sudo nixos-rebuild switch --rollback` from a working shell.
 
-Once you have several generations again, the old advice applies:
-`sudo nixos-rebuild switch --rollback`, or pick an older entry at boot.
+Both need an older generation to exist. `sudo nix-collect-garbage -d` deletes every
+one but the current — after running it there is nothing to roll back to, and the
+boot menu has a single entry, until you have rebuilt a few times. Recovery from that
+state means fixing the config and rebuilding, or chrooting in from the Ubuntu USB
+stick (mount `/dev/disk/by-label/nixos`) — the NixOS installer is not on it.
 
 ## What's where
 
@@ -127,14 +125,8 @@ removed in favor of a single boot entry — see the commit that touched this lin
 
 ## The fleet
 
-`ssh deepblue` / `ssh jetson` — both rejoined the tailnet in 2026-08, shared in from
-another account, and their blocks are back in [modules/home/ssh.nix](modules/home/ssh.nix).
-The old per-host keys were destroyed when they left, so each got a freshly generated
-one — `~/.ssh/id_ed25519_deepblue` and `~/.ssh/id_ed25519_jetson`, never the
-`id_ed25519` that authenticates to GitHub, so any one host can be revoked on its own
-(deepblue especially: it is someone else's machine and other people have keys on it).
-Hosts are pinned to their MagicDNS names rather than `100.x` addresses, which changed
-across the leave/rejoin.
+`ssh deepblue` / `ssh jetson` — hosts are preconfigured in
+[modules/home/ssh.nix](modules/home/ssh.nix), one key per host under `~/.ssh/`.
 `ssh -N jetson-dash` tunnels the jetson's Hermes dashboard to localhost:9119.
 
 This machine runs sshd, key-only, reachable **only over tailscale** (`hal-9000`).
