@@ -11,6 +11,7 @@
     ./nvidia.nix
     ./power.nix
     ./rust.nix
+    ./searx.nix
     ./ssh.nix
     ./steam.nix
     ./systemd-boot.nix

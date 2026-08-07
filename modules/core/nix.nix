@@ -54,4 +54,9 @@
     nix-index-database.comma.enable = true;
     command-not-found.enable = false; # replaced by nix-index
   };
+
+  # nix-ld's sibling for scripts instead of binaries: installers that hardcode
+  # /bin/bash or /usr/bin/python (hermes's cua-driver installer, curl|bash)
+  # find them via a dynamic /bin + /usr/bin mounted from PATH
+  services.envfs.enable = true;
 }
