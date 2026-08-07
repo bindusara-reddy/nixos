@@ -126,11 +126,6 @@ removed in favor of a single boot entry — see the commit that touched this lin
 
 This machine runs sshd, key-only, reachable **only over tailscale** (`hal-9000`).
 
-`deepblue` still runs Sunshine, and Moonlight reaches it over plain LAN via mDNS —
-no tailnet needed. `moonlight` finds `deep-blue.local` on its own; pair once with
-`moonlight pair <ip> --pin 1234`, entering the same PIN in Sunshine's web UI on
-port 47990.
-
 ## Extras you might forget exist
 
 - **Flatpak** for anything not in nixpkgs: `flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo` once, then `flatpak install flathub <app>`.
