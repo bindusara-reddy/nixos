@@ -34,9 +34,9 @@ sudo tailscale up
 
 | you type  | what happens |
 |-----------|--------------|
-| `rebuild` | apply the config (`nh os switch` — shows a diff of what changed) |
+| `rebuild` | jj-commit any brand-new files (flakes can't see untracked files), then apply the config (`nh os switch` — shows a diff of what changed) |
 | `update`  | update all flake inputs **and** rebuild (`nh os switch --update`) |
-| `clean`   | delete old generations, keep last 5 / last 7 days |
+| `clean`   | delete every generation except the live one — forfeits rollback; the weekly auto-clean still keeps 5 gens / 7 days between manual cleans |
 | `nh search foo` | search nixpkgs from the terminal |
 | `,foo`    | run a program once without installing it |
 | `nvidia-offload <cmd>` | run something on the RTX 3060 (everything else uses the iGPU) |
@@ -91,7 +91,7 @@ then `rebuild`.
 
 **Something broke after a rebuild?** Reboot and pick the previous generation in the boot
 menu, or `sudo nixos-rebuild switch --rollback` from a working shell. Neither works
-right after `nix-collect-garbage -d`, which leaves only the current generation.
+right after `clean` or `nix-collect-garbage -d`, which leave only the current generation.
 
 ## What's where
 
