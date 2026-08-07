@@ -32,8 +32,11 @@ in {
   home.packages = [
     (pkgs.writeShellScriptBin "sudo-askpass" ''
       # sudo passes the prompt as $1; agents use: sudo -A <cmd>
+      # --prompt-only, not --prompt: in dmenu mode fuzzel waits on stdin for the
+      # match list, and with </dev/null it sees EOF on an empty list and exits
+      # before drawing anything. --prompt-only skips the stdin wait entirely.
       exec ${pkgs.fuzzel}/bin/fuzzel --dmenu --password \
-        --config=${fuzzelIni} --prompt="''${1:-sudo password: } " </dev/null
+        --config=${fuzzelIni} --prompt-only="''${1:-sudo password: } "
     '')
   ];
 

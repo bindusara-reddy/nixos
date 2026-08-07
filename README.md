@@ -127,10 +127,12 @@ removed in favor of a single boot entry — see the commit that touched this lin
 
 ## The fleet
 
-Currently a fleet of one. `deepblue` and the jetson left the tailnet in 2026-08 and
-their keys were destroyed with them, so the per-host `ssh` blocks that pointed at
-`100.x` addresses are gone from [modules/home/ssh.nix](modules/home/ssh.nix) — add
-them back there if either machine rejoins. Only `~/.ssh/id_ed25519` (GitHub) remains.
+`ssh deepblue` / `ssh jetson` — both rejoined the tailnet in 2026-08, shared in from
+another account, and their blocks are back in [modules/home/ssh.nix](modules/home/ssh.nix).
+The old per-host keys were destroyed when they left, so both now authenticate with
+`~/.ssh/id_ed25519` (the same key as GitHub); the hosts are pinned to their MagicDNS
+names rather than `100.x` addresses, which changed across the leave/rejoin.
+`ssh -N jetson-dash` tunnels the jetson's Hermes dashboard to localhost:9119.
 
 This machine runs sshd, key-only, reachable **only over tailscale** (`hal-9000`).
 
