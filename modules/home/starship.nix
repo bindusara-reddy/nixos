@@ -101,30 +101,32 @@
       # shell: starship would otherwise run these through STARSHIP_SHELL, i.e.
       # nushell, which cannot parse `>/dev/null 2>&1 ||`. It pipes the command
       # in on stdin, so this is ["sh"] and not ["sh" "-c"].
-      custom.jj = {
-        description = "bookmark (or change id) of the working-copy commit";
-        when = "jj root";
-        shell = ["sh"];
-        # --ignore-working-copy: never let drawing a prompt snapshot the repo
-        command = "jj log -r @ --no-graph --ignore-working-copy --limit 1 -T 'separate(\" \", coalesce(bookmarks.join(\",\"), change_id.shortest(6)), if(conflict, \"×\"), if(empty, \"\", \"!\"))'";
-        symbol = "󱗆";
-        style = "bg:color_aqua";
-        format = "[[ $symbol $output ](fg:color_fg0 bg:color_aqua)]($style)";
-        ignore_timeout = true;
-      };
-      custom.git_branch = {
-        description = "built-in git_branch, but only outside a jj repo";
-        when = true;
-        shell = ["sh"];
-        command = "jj root >/dev/null 2>&1 || starship module git_branch";
-        format = "$output";
-      };
-      custom.git_status = {
-        description = "built-in git_status, but only outside a jj repo";
-        when = true;
-        shell = ["sh"];
-        command = "jj root >/dev/null 2>&1 || starship module git_status";
-        format = "$output";
+      custom = {
+        jj = {
+          description = "bookmark (or change id) of the working-copy commit";
+          when = "jj root";
+          shell = ["sh"];
+          # --ignore-working-copy: never let drawing a prompt snapshot the repo
+          command = "jj log -r @ --no-graph --ignore-working-copy --limit 1 -T 'separate(\" \", coalesce(bookmarks.join(\",\"), change_id.shortest(6)), if(conflict, \"×\"), if(empty, \"\", \"!\"))'";
+          symbol = "󱗆";
+          style = "bg:color_aqua";
+          format = "[[ $symbol $output ](fg:color_fg0 bg:color_aqua)]($style)";
+          ignore_timeout = true;
+        };
+        git_branch = {
+          description = "built-in git_branch, but only outside a jj repo";
+          when = true;
+          shell = ["sh"];
+          command = "jj root >/dev/null 2>&1 || starship module git_branch";
+          format = "$output";
+        };
+        git_status = {
+          description = "built-in git_status, but only outside a jj repo";
+          when = true;
+          shell = ["sh"];
+          command = "jj root >/dev/null 2>&1 || starship module git_status";
+          format = "$output";
+        };
       };
       # how long the last command took (only shown past 2s)
       cmd_duration = {
