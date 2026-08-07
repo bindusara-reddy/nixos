@@ -89,14 +89,9 @@ terminal: same key, editor layer.
 (user stuff) or [modules/core/host-packages.nix](modules/core/host-packages.nix) (system stuff),
 then `rebuild`.
 
-**Something broke after a rebuild?** Reboot and pick the previous generation in the
-boot menu, or `sudo nixos-rebuild switch --rollback` from a working shell.
-
-Both need an older generation to exist. `sudo nix-collect-garbage -d` deletes every
-one but the current — after running it there is nothing to roll back to, and the
-boot menu has a single entry, until you have rebuilt a few times. Recovery from that
-state means fixing the config and rebuilding, or chrooting in from the Ubuntu USB
-stick (mount `/dev/disk/by-label/nixos`) — the NixOS installer is not on it.
+**Something broke after a rebuild?** Reboot and pick the previous generation in the boot
+menu, or `sudo nixos-rebuild switch --rollback` from a working shell. Neither works
+right after `nix-collect-garbage -d`, which leaves only the current generation.
 
 ## What's where
 

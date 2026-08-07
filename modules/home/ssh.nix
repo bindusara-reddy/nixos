@@ -5,9 +5,8 @@
     # the "*" block below carries what we actually want everywhere
     enableDefaultConfig = false;
     settings = {
-      # MagicDNS names rather than 100.x IPs, which change when a node leaves
-      # and rejoins. One key per host, never the id_ed25519 that authenticates
-      # to GitHub, so a single host can be revoked on its own.
+      # MagicDNS names, not 100.x IPs — those change if a node rejoins.
+      # One key per host, so any single host can be revoked on its own.
       "deepblue deep-blue" = {
         hostname = "deep-blue.taild98811.ts.net";
         user = "waterfly";
