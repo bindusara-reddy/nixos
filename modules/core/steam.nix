@@ -14,9 +14,22 @@
       extraCompatPackages = [pkgs.proton-ge-bin];
     };
 
-    # in Steam launch options: `gamemoderun %command%` or `mangohud %command%`
     gamemode.enable = true;
-    gamescope.enable = true;
+
+    # Game won't fullscreen, or ignores being resized? Launch options, in order
+    # of what to try. First runs the game as a native Wayland client instead of
+    # through XWayland, which is where most of that misbehaviour comes from
+    # (needs GE-Proton, selected as the compat tool):
+    #   PROTON_ENABLE_WAYLAND=1 %command%
+    # Otherwise hand it a nested compositor to scale into:
+    #   gamescope -f -W 1920 -H 1080 -r 144 -- %command%
+    # `-w 1280 -h 720 -b` instead of `-f` for borderless. Add nvidia-offload
+    # before %command% for OpenGL titles — they land on the iGPU without it.
+    gamescope = {
+      enable = true;
+      capSysNice = true;
+      enableWsi = true; # Vulkan WSI layer — fullscreen handoff for Proton
+    };
   };
   environment.systemPackages = [pkgs.mangohud];
 }
