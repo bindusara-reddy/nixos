@@ -47,6 +47,6 @@
     # AI CLIs
     claude-code
     codex
-    gemini-cli
+    pi-coding-agent # pi — badlogic's minimal coding agent
   ];
 }
