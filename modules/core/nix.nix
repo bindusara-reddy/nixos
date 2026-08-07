@@ -43,7 +43,10 @@
       # symlinks and direnv gc roots that plain nix-collect-garbage keeps
       clean = {
         enable = config.var.autoGarbageCollect;
-        extraArgs = "--keep 5 --keep-since 7d"; # same policy as the `clean` alias
+        # laxer than the interactive `clean` def (nushell.nix), which keeps 1.
+        # Like any bare `nh clean` this prunes generations only — it leaves
+        # /boot/loader/entries stale until the next rebuild.
+        extraArgs = "--keep 5 --keep-since 7d";
       };
     };
 
