@@ -129,9 +129,12 @@ removed in favor of a single boot entry — see the commit that touched this lin
 
 `ssh deepblue` / `ssh jetson` — both rejoined the tailnet in 2026-08, shared in from
 another account, and their blocks are back in [modules/home/ssh.nix](modules/home/ssh.nix).
-The old per-host keys were destroyed when they left, so both now authenticate with
-`~/.ssh/id_ed25519` (the same key as GitHub); the hosts are pinned to their MagicDNS
-names rather than `100.x` addresses, which changed across the leave/rejoin.
+The old per-host keys were destroyed when they left, so each got a freshly generated
+one — `~/.ssh/id_ed25519_deepblue` and `~/.ssh/id_ed25519_jetson`, never the
+`id_ed25519` that authenticates to GitHub, so any one host can be revoked on its own
+(deepblue especially: it is someone else's machine and other people have keys on it).
+Hosts are pinned to their MagicDNS names rather than `100.x` addresses, which changed
+across the leave/rejoin.
 `ssh -N jetson-dash` tunnels the jetson's Hermes dashboard to localhost:9119.
 
 This machine runs sshd, key-only, reachable **only over tailscale** (`hal-9000`).
