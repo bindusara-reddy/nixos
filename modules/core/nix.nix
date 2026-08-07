@@ -48,7 +48,16 @@
     };
 
     # run binaries that weren't built for NixOS (downloaded tools, pip wheels, mason, …)
-    nix-ld.enable = true;
+    nix-ld = {
+      enable = true;
+      # what hermes's cua-driver links beyond the default set (`ldd` said so);
+      # extend this list when some other downloaded binary reports one missing
+      libraries = with pkgs; [
+        xorg.libX11
+        xorg.libXi
+        libxkbcommon
+      ];
+    };
 
     # `,foo` runs any package once without installing it
     nix-index-database.comma.enable = true;
