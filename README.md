@@ -139,6 +139,8 @@ This machine runs sshd, key-only, reachable **only over tailscale** (`hal-9000`)
 - `mission-center` (GUI) / `btop` (with GPU panel) for watching the machine work.
 - AI CLIs preinstalled: `claude`, `codex`, `pi`, and `hermes` (Nous Research's
   self-improving agent — run `hermes setup` once to pick a provider, then just `hermes`).
+  Hermes web search runs against the local SearXNG on `127.0.0.1:8888` (searx.nix);
+  its computer-use driver needs envfs (nix.nix) for the `/bin/bash` its installer expects.
 
 ## Learning more
 
