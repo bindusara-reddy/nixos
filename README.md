@@ -137,7 +137,7 @@ This machine runs sshd, key-only, reachable **only over tailscale** (`hal-9000`)
   no root and no mutable state under `/var/lib`. Check it took with
   `busctl --system get-property org.freedesktop.Accounts /org/freedesktop/Accounts/User1000 org.freedesktop.Accounts.User IconFile`.
 - `mission-center` (GUI) / `btop` (with GPU panel) for watching the machine work.
-- AI CLIs preinstalled: `claude`, `codex`, `gemini`, and `hermes` (Nous Research's
+- AI CLIs preinstalled: `claude`, `codex`, `pi`, and `hermes` (Nous Research's
   self-improving agent — run `hermes setup` once to pick a provider, then just `hermes`).
 
 ## Learning more
