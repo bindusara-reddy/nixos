@@ -19,11 +19,8 @@
       hermes-jetson = "ssh -t jetson /home/bindu/.local/bin/hermes";
 
       # the daily drivers — nh knows the flake path from var.flakePath
-      # (`rebuild` and `update` are defs in extraConfig below — they need logic
-      # an alias can't hold)
-      # keep only the live generation — running this forfeits rollback until the
-      # next successful rebuild; the weekly auto-clean (nix.nix) still keeps 5/7d
-      clean = "nh clean all --keep 1 --keep-since 0h";
+      # (`rebuild`, `update` and `clean` are defs in extraConfig below — they
+      # need logic an alias can't hold)
     };
     settings = {
       show_banner = false;
@@ -114,6 +111,19 @@
       def update [] {
         jj-track-new update
         nh os switch --update
+      }
+
+      # keep only the newest generation — at --keep 1 this forfeits rollback
+      # until the next successful rebuild; the weekly auto-clean (nix.nix)
+      # still keeps 5/7d.
+      # The second line is not redundant: nh deletes profile generations but
+      # never re-runs the bootloader installer, so /boot/loader/entries keeps a
+      # .conf per deleted generation — menu entries pointing at store paths the
+      # GC already took, which fail if you pick them. switch-to-configuration
+      # rewrites the entries from the surviving profile links.
+      def clean [--keep (-k): int = 1] {
+        nh clean all --keep $keep --keep-since 0h
+        sudo /nix/var/nix/profiles/system/bin/switch-to-configuration boot
       }
     '';
   };
