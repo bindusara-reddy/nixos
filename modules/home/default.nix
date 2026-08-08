@@ -21,6 +21,7 @@
     ./lazygit.nix
     ./neovim.nix
     ./nushell.nix
+    ./quill.nix
     ./ssh.nix
     ./starship.nix
     ./wezterm.nix
