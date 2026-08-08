@@ -226,6 +226,26 @@
         "type": "github"
       }
     },
+    "quill-linux": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1786186288,
+        "narHash": "sha256-1HH08daZTrAo/XhDP+z4jq2V7da0UcCZUoP3Vfy1+3I=",
+        "owner": "bindusara-reddy",
+        "repo": "quill-linux",
+        "rev": "1e099e9d21170739831f9c573de3ed4966c42136",
+        "type": "github"
+      },
+      "original": {
+        "owner": "bindusara-reddy",
+        "repo": "quill-linux",
+        "type": "github"
+      }
+    },
     "root": {
       "inputs": {
         "hermes-agent": "hermes-agent",
@@ -233,6 +253,7 @@
         "nix-index-database": "nix-index-database",
         "nixpkgs": "nixpkgs",
         "nvf": "nvf",
+        "quill-linux": "quill-linux",
         "rust-overlay": "rust-overlay"
       }
     },

@@ -30,6 +30,12 @@
       url = "github:nousresearch/hermes-agent";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    # quill — meeting recorder/transcriber, Linux twin of digimata/quill
+    quill-linux = {
+      url = "github:bindusara-reddy/quill-linux";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = {nixpkgs, ...} @ inputs: let
