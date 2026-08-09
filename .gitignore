@@ -4,3 +4,20 @@ result-*
 
 # direnv cache
 .direnv/
+
+# local credentials and generated secrets
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.pfx
+*.kdbx
+*.age
+credentials/
+secrets/
+
+# tool-specific auth/config that must stay local
+.hermes/
+.config/gh/

@@ -25,6 +25,7 @@
     ./ssh.nix
     ./starship.nix
     ./wezterm.nix
+    ./wallpaper.nix
     ./yazi.nix
     ./zoxide.nix
   ];

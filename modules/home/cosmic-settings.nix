@@ -17,7 +17,7 @@
   home.packages = [
     (pkgs.writeShellScriptBin "cosmic-save" ''
       set -euo pipefail
-      dest="${config.home.homeDirectory}/nixos/modules/home/cosmic-settings"
+      dest="${config.var.flakePath}/modules/home/cosmic-settings"
       rm -rf "$dest"
       cp -rT "$HOME/.config/cosmic" "$dest"
       echo "captured ~/.config/cosmic -> $dest"
